@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("../common/theme/theme.css");
+
+@layer utilities {
+    input {
+        @apply w-full;
+    }
+
+    .error_class {
+        @apply !border !border-[#FC642D];
+    }
+}
+
+/* Styling input */
+/* input[type="text"],
+input[type="number"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+textarea {
+    outline: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #9f9f9f;
+    line-height: 150%;
+} */
+
+/* Placeholder styling */
+/* input::placeholder,
+textarea::placeholder {
+    color: #9f9f9f;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+} */
+
+/* Checkbox styling */
+input[type="checkbox"] {
+    accent-color: #5ebe76;
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: middle;
+    margin-right: 0.1rem;
+}
+
+/* Focus styles */
+input:focus,
+textarea:focus {
+    border-color: #309b5f;
+    outline: none;
+}
+
+/* button styling */
+button:hover,
+a:hover {
+    box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom overlay background for QR code */
+.custom-overlay-background {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Property card table */
+td {
+    padding: 0.62rem 0;
+}
+
+
+.infobox-no-overload img {
+    display: none !important;
+}

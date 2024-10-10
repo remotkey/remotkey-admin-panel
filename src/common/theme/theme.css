@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+
+    /* REGULAR */
+    .font_reg_1 {
+        @apply text-[3.8125rem] font-normal;
+    }
+
+    .font_reg_2 {
+        @apply text-[3.062rem] font-normal;
+    }
+
+    .font_reg_3 {
+        @apply text-[2.438rem] font-normal;
+    }
+
+    .font_reg_4 {
+        @apply text-[1.938rem] font-normal;
+    }
+
+    .font_reg_5 {
+        @apply text-[1.562rem] font-normal;
+    }
+
+    .font_reg_6 {
+        @apply text-[1.250rem] font-normal;
+    }
+
+    .font_reg_7 {
+        @apply text-[1.000rem] font-normal;
+    }
+
+    .font_reg_8 {
+        @apply text-[0.812rem] font-normal;
+    }
+
+    .font_reg_9 {
+        @apply text-[0.625rem] font-normal;
+    }
+
+    /* MEDIUM */
+    .font_med_1 {
+        @apply text-[3.8125rem] font-medium;
+    }
+
+    .font_med_3 {
+        @apply text-[2.438rem] font-medium;
+    }
+
+    .font_med_4 {
+        @apply text-[1.938rem] font-medium;
+    }
+
+    .font_med_5 {
+        @apply text-[1.562rem] font-medium;
+    }
+
+    .font_med_6 {
+        @apply text-[1.250rem] font-medium;
+    }
+
+    .font_med_7 {
+        @apply text-[1.000rem] font-medium;
+    }
+
+    .font_med_8 {
+        @apply text-[0.875rem] font-medium;
+    }
+
+    .font_med_9 {
+        @apply text-[0.812rem] font-medium;
+    }
+
+    .font_med_10 {
+        @apply text-[0.625rem] font-medium;
+    }
+
+    /* SEMI-BOLD */
+    .font_semi_1 {
+        @apply text-[4.5rem] font-semibold;
+    }
+
+    .font_semi_2 {
+        @apply text-[3.75rem] font-semibold;
+    }
+
+    .font_semi_3 {
+        @apply text-[3rem] font-semibold;
+    }
+
+    .font_semi_4 {
+        @apply text-[2.438rem] font-semibold;
+    }
+
+    .font_semi_5 {
+        @apply text-[2.125rem] font-semibold;
+    }
+
+    .font_semi_6 {
+        @apply text-[1.875rem] font-semibold;
+    }
+
+    .font_semi_7 {
+        @apply text-[1.75rem] font-semibold;
+    }
+
+    .font_semi_8 {
+        @apply text-[1.5rem] font-semibold;
+    }
+
+    .font_semi_8a {
+        @apply text-[1.375rem] font-semibold;
+    }
+
+    .font_semi_9 {
+        @apply text-[1.25rem] font-semibold;
+    }
+
+    .font_semi_10 {
+        @apply text-[1.125rem] font-semibold;
+    }
+
+    .font_semi_11 {
+        @apply text-[1rem] font-semibold;
+    }
+
+    .font_semi_12 {
+        @apply text-[0.875rem] font-semibold;
+    }
+
+    .font_semi_13 {
+        @apply text-[0.75rem] font-semibold;
+    }
+
+    .font_semi_14 {
+        @apply text-[0.8125rem] font-semibold;
+    }
+
+    .font_semi_15 {
+        @apply text-[0.625rem] font-semibold;
+    }
+
+    /* BOLD */
+    .font_bold_1 {
+        @apply text-[3.8125rem] font-bold;
+    }
+
+    .font_bold_2 {
+        @apply text-[3.062rem] font-bold;
+    }
+
+    .font_bold_3 {
+        @apply text-[2.438rem] font-bold;
+    }
+
+    .font_bold_4 {
+        @apply text-[1.938rem] font-bold;
+    }
+
+    .font_bold_5 {
+        @apply text-[1.562rem] font-bold;
+    }
+
+    .font_bold_6 {
+        @apply text-[1.250rem] font-bold;
+    }
+
+    .font_bold_7 {
+        @apply text-[1.000rem] font-bold;
+    }
+
+    .font_bold_8 {
+        @apply text-[0.875rem] font-bold;
+    }
+
+    .font_bold_9 {
+        @apply text-[0.812rem] font-bold;
+    }
+
+    .font_bold_10 {
+        @apply text-[0.625rem] font-bold;
+    }
+
+    .font_bold_11 {
+        @apply text-[2rem] font-bold;
+    }
+
+
+}
