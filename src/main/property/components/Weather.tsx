@@ -30,7 +30,6 @@ export const Weather = async ({ placeName }: { placeName: string }) => {
       <span className="mb-6 text-lg font-medium text-gray-600">
         {placeName}
       </span>
-
       <div className="flex gap-12">
         <div className="flex items-center">
           <WiHumidity
