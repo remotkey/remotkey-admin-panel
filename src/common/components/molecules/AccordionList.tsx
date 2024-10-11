@@ -94,15 +94,15 @@ export const AccordionList = ({
                 </div>
               </div>
               {extraInfoVisible.includes(index) && (
-                <div className="space-y-2 pt-2">
+                <div className="flex flex-col gap-2 space-y-2 rounded-lg bg-gray-100 p-4">
                   {LOCATION_EXTRA_INFO?.map((item) => (
                     <InputContainer
                       key={item.name}
-                      // inputLabel={field.label}
-                      isMandatory={item.isMandatory || false}>
+                      isMandatory={item.isMandatory || false}
+                      childClassName="bg-white">
                       {item.type === "textarea" ? (
                         <Textarea
-                          className="block w-full resize-none rounded-lg border-none"
+                          className="block w-full resize-none rounded-lg px-2 py-1 "
                           placeholder={item.placeholder}
                           rows={3}
                           defaultValue={
@@ -119,9 +119,8 @@ export const AccordionList = ({
                       ) : (
                         <input
                           type="text"
-                          className="block w-full rounded-lg border-none px-2 py-1"
+                          className="w-full rounded-lg border-none px-2 py-1 focus:outline-none bg-white"
                           placeholder={item.placeholder}
-                          // @ts-ignore
                           defaultValue={
                             field[item.name as keyof typeof field] || ""
                           }
