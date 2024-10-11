@@ -43,6 +43,7 @@ export default async function PropertyPage({
           checkIn={`${data?.checkIn?.time} ${data?.checkIn?.period}`}
           checkOut={`${data?.checkOut?.time} ${data?.checkOut?.period}`}
         />
+
         <hr className="border-C_C7C7C7" />
         <div className="flex flex-col gap-[0.9375rem]">
           <SectionSubHeading title="Today's Weather" />
