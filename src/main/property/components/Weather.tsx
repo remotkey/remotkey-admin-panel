@@ -27,6 +27,7 @@ export const Weather = async ({ placeName }: { placeName: string }) => {
       <span className="mb-2 text-4xl font-bold text-C_002E2E">
         {(weather?.main?.temp).toFixed(2)}°F
       </span>
+
       <span className="mb-6 text-lg font-medium text-gray-600">
         {placeName}
       </span>
