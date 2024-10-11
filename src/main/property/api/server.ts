@@ -41,7 +41,7 @@ export const getWetherByLocation = async ({
   place: string;
 }): Promise<WeatherResponseInterface> => {
   const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${place}&units=metric&appid=${process.env.WEATHER_API_KEY}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${place}&units=imperial&appid=${process.env.WEATHER_API_KEY}`
   );
 
   const data: WeatherResponseInterface = await response.json();

@@ -45,7 +45,7 @@ export default async function PropertyPage({
         />
         <hr className="border-C_C7C7C7" />
         <div className="flex flex-col gap-[0.9375rem]">
-          <SectionSubHeading title="Weather information" />
+          <SectionSubHeading title="Today's Weather" />
           <div className="rounded-r_08125">
             <Weather placeName={data?.location} />
           </div>

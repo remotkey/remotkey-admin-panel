@@ -25,7 +25,7 @@ export const Weather = async ({ placeName }: { placeName: string }) => {
         />
       )}
       <span className="mb-2 text-4xl font-bold text-C_002E2E">
-        {(weather?.main?.temp).toFixed(2)}°C
+        {(weather?.main?.temp).toFixed(2)}°F
       </span>
       <span className="mb-6 text-lg font-medium text-gray-600">
         {placeName}
@@ -48,7 +48,7 @@ export const Weather = async ({ placeName }: { placeName: string }) => {
           <FiWind size={40} className="mr-3" color={COLOR_PALETTE.C_5EBE76} />
           <div className="flex flex-col">
             <span className="text-xl font-semibold text-C_002E2E">
-              {(weather?.wind?.speed * 3.6).toFixed(2)} km/h
+              {weather?.wind?.speed} MPH
             </span>
             <span className="text-sm text-C_8F8F8F">Wind Speed</span>
           </div>
