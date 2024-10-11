@@ -13,4 +13,13 @@ export const NearByRentals = new Schema({
     type: Number,
     required: [true, "Near by rental longitude is required."],
   },
+  description: {
+    type: String,
+  },
+  website: {
+    type: String,
+  },
+  contactNumber: {
+    type: String,
+  },
 });

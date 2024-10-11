@@ -1,28 +1,60 @@
+import { FormValues } from "@/main/property/components/PropertyForm";
+import { LOCATION_EXTRA_INFO } from "@/main/property/constants";
 import { LatLng } from "@/main/property/interfaces";
-import { useState, useEffect } from "react";
-import { HiChevronUp, HiChevronDown, HiTrash } from "react-icons/hi";
+import { useEffect, useState } from "react";
+import { useFormContext } from "react-hook-form";
+import { HiChevronDown, HiChevronUp, HiTrash } from "react-icons/hi";
+import { TiPlus } from "react-icons/ti";
+import { InputContainer } from "../atoms/InputContainer";
+import { Textarea } from "@headlessui/react";
 
 interface ListInterface {
-  fileds: LatLng[];
+  fields: LatLng[];
   handleRemoveItem: (index: number) => void;
   text: string;
+  name: keyof FormValues;
 }
 
 export const AccordionList = ({
-  fileds,
+  fields,
   handleRemoveItem,
   text,
+  name,
 }: ListInterface) => {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState(true);
+  const [extraInfoVisible, setExtraInfoVisible] = useState<number[]>([]);
+
+  const { setValue, trigger } = useFormContext<FormValues>();
 
   useEffect(() => {
-    if (fileds.length > 0) {
+    if (fields.length > 0) {
       setIsOpen(true);
+      const oldValues = fields.map((item, index) => {
+        // @ts-ignore
+        setValue(`${name}.${index}`, item);
+        return item;
+      });
+      setValue(name, oldValues);
     }
-  }, [fileds]);
+  }, [fields, name, setValue]);
 
   const toggleList = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleFieldChange = (index: number, key: string, value: string) => {
+    // @ts-ignore
+    setValue(`${name}.${index}.${key}`, value);
+    // @ts-ignore
+    trigger(`${name}.${index}.${key}`);
+  };
+
+  const handleAddInformation = (index: number) => {
+    if (extraInfoVisible.includes(index)) {
+      setExtraInfoVisible(extraInfoVisible.filter((i) => i !== index));
+    } else {
+      setExtraInfoVisible([...extraInfoVisible, index]);
+    }
   };
 
   return (
@@ -40,18 +72,70 @@ export const AccordionList = ({
           isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         }`}>
         <ul className="space-y-2 rounded-b-lg bg-white px-4 py-3">
-          {fileds.map((filed, index) => (
-            <li
-              key={index}
-              className="flex items-center justify-between text-gray-800">
-              <span>{filed.place}</span>
-              <button
-                type="button"
-                className="flex items-center text-red-500 transition-colors hover:text-red-600 hover:shadow-none"
-                onClick={() => handleRemoveItem(index)}>
-                <HiTrash className="mr-1" />
-                Remove
-              </button>
+          {fields.map((field, index) => (
+            <li key={index} className="flex flex-col space-y-2 text-gray-800">
+              <div className="flex items-center justify-between">
+                <span>{field.place}</span>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    className="flex items-center text-C_5EBE76 transition-colors hover:text-C_5EBE76 hover:shadow-none"
+                    onClick={() => handleAddInformation(index)}>
+                    <TiPlus className="mr-1" />
+                    Extra Information
+                  </button>
+                  <button
+                    type="button"
+                    className="flex items-center text-red-500 transition-colors hover:text-red-600 hover:shadow-none"
+                    onClick={() => handleRemoveItem(index)}>
+                    <HiTrash className="mr-1" />
+                    Remove
+                  </button>
+                </div>
+              </div>
+              {extraInfoVisible.includes(index) && (
+                <div className="space-y-2 pt-2">
+                  {LOCATION_EXTRA_INFO?.map((item) => (
+                    <InputContainer
+                      key={item.name}
+                      // inputLabel={field.label}
+                      isMandatory={item.isMandatory || false}>
+                      {item.type === "textarea" ? (
+                        <Textarea
+                          className="block w-full resize-none rounded-lg border-none"
+                          placeholder={item.placeholder}
+                          rows={3}
+                          onChange={(event) =>
+                            handleFieldChange(
+                              index,
+                              item.name,
+                              event.target.value
+                            )
+                          }>
+                          {field[item.name as keyof typeof field] || ""}
+                        </Textarea>
+                      ) : (
+                        <input
+                          type="text"
+                          className="block w-full rounded-lg border-none px-2 py-1"
+                          placeholder={item.placeholder}
+                          // @ts-ignore
+                          defaultValue={
+                            field[item.name as keyof typeof field] || ""
+                          }
+                          onChange={(event) =>
+                            handleFieldChange(
+                              index,
+                              item.name,
+                              event.target.value
+                            )
+                          }
+                        />
+                      )}
+                    </InputContainer>
+                  ))}
+                </div>
+              )}
             </li>
           ))}
         </ul>

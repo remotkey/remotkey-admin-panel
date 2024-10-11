@@ -13,4 +13,13 @@ export const NearByRestaurantsSchema = new Schema({
     type: Number,
     required: [true, "Nearby restaurant longitude is required."],
   },
+  description: {
+    type: String,
+  },
+  website: {
+    type: String,
+  },
+  contactNumber: {
+    type: String,
+  },
 });

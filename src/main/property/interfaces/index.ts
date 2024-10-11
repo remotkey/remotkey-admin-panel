@@ -23,6 +23,9 @@ export interface LatLng {
   lat: number;
   lng: number;
   place?: string;
+  description?: string;
+  website?: string;
+  contactNumber?: string;
 }
 
 export interface TimePeriod {

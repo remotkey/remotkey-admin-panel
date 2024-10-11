@@ -7,6 +7,14 @@ interface PropertyFormField {
   type?: "textarea" | "text";
   placeholder?: string;
 }
+
+interface ExtraInfoInterface {
+  name: string;
+  label: string;
+  isMandatory?: boolean;
+  type?: "textarea" | "text";
+  placeholder?: string;
+}
 export const PROPERTY_FORM_FIELDS: PropertyFormField[] = [
   {
     name: "name",
@@ -32,6 +40,25 @@ export const PROPERTY_FORM_FIELDS: PropertyFormField[] = [
     label: "City",
     placeholder: "Enter City Name",
     isMandatory: true,
+  },
+];
+
+export const LOCATION_EXTRA_INFO: ExtraInfoInterface[] = [
+  {
+    name: "description",
+    label: "Description",
+    type: "textarea",
+    placeholder: "Enter Description",
+  },
+  {
+    name: "contactNumber",
+    label: "Contact Number",
+    placeholder: "Enter contact number here",
+  },
+  {
+    name: "website",
+    label: "Website",
+    placeholder: "Enter website here",
   },
 ];
 

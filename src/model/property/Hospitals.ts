@@ -13,4 +13,13 @@ export const HospitalSchema = new Schema({
     type: Number,
     required: [true, "Hospital longitude is required."],
   },
+  description: {
+    type: String,
+  },
+  website: {
+    type: String,
+  },
+  contactNumber: {
+    type: String,
+  },
 });

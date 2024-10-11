@@ -13,4 +13,13 @@ export const LocalTours = new Schema({
     type: Number,
     required: [true, "Near by local tour longitude is required."],
   },
+  description: {
+    type: String,
+  },
+  website: {
+    type: String,
+  },
+  contactNumber: {
+    type: String,
+  },
 });

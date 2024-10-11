@@ -277,9 +277,10 @@ export const GoogleMap = () => {
             <>
               {Array.isArray(field.value) && field.value.length > 0 && (
                 <AccordionList
-                  fileds={field.value as LatLng[]}
+                  fields={field.value as LatLng[]}
                   handleRemoveItem={(itemIndex) => item.removeItem(itemIndex)}
                   text={item.text}
+                  name={item.name}
                 />
               )}
             </>
@@ -289,6 +290,7 @@ export const GoogleMap = () => {
       <input type="hidden" {...register("hospitals")} />
       <input type="hidden" {...register("nearByRestaurants")} />
       <input type="hidden" {...register("nearByRentals")} />
+      <input type="hidden" {...register("localTours")} />
     </div>
   );
 };
