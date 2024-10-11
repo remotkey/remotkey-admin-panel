@@ -22,4 +22,7 @@ export const NearByRestaurantsSchema = new Schema({
   contactNumber: {
     type: String,
   },
+  email: {
+    type: String,
+  },
 });

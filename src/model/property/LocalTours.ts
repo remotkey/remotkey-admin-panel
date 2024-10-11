@@ -22,4 +22,7 @@ export const LocalTours = new Schema({
   contactNumber: {
     type: String,
   },
+  email: {
+    type: String,
+  },
 });

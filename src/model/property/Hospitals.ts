@@ -22,4 +22,7 @@ export const HospitalSchema = new Schema({
   contactNumber: {
     type: String,
   },
+  email: {
+    type: String,
+  },
 });

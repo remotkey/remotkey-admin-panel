@@ -51,14 +51,19 @@ export const LOCATION_EXTRA_INFO: ExtraInfoInterface[] = [
     placeholder: "Enter Description",
   },
   {
+    name: "website",
+    label: "Website",
+    placeholder: "Enter website here",
+  },
+  {
     name: "contactNumber",
     label: "Contact Number",
     placeholder: "Enter contact number here",
   },
   {
-    name: "website",
-    label: "Website",
-    placeholder: "Enter website here",
+    name: "email",
+    label: "Email",
+    placeholder: "Enter email here",
   },
 ];
 

@@ -10,4 +10,5 @@ export const NearByRestaurantsSchema = v.object({
   description: v.optional(v.string()),
   website: v.optional(v.string()),
   contactNumber: v.optional(v.string()),
+  email: v.optional(v.string()),
 });

@@ -36,7 +36,7 @@ export const AccordionList = ({
       });
       setValue(name, oldValues);
     }
-  }, [fields, name, setValue]);
+  }, []);
 
   const toggleList = () => {
     setIsOpen(!isOpen);
@@ -105,15 +105,17 @@ export const AccordionList = ({
                           className="block w-full resize-none rounded-lg border-none"
                           placeholder={item.placeholder}
                           rows={3}
+                          defaultValue={
+                            field[item.name as keyof typeof field] || ""
+                          }
                           onChange={(event) =>
                             handleFieldChange(
                               index,
                               item.name,
                               event.target.value
                             )
-                          }>
-                          {field[item.name as keyof typeof field] || ""}
-                        </Textarea>
+                          }
+                        />
                       ) : (
                         <input
                           type="text"

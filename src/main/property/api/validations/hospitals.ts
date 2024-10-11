@@ -7,4 +7,5 @@ export const HospitalSchema = v.object({
   description: v.optional(v.string()),
   website: v.pipe(v.string(), v.nonEmpty("Hospital website cannot be empty.")),
   contactNumber: v.optional(v.string()),
+  email: v.optional(v.string()),
 });

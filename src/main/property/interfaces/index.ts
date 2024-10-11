@@ -26,6 +26,7 @@ export interface LatLng {
   description?: string;
   website?: string;
   contactNumber?: string;
+  email?: string;
 }
 
 export interface TimePeriod {
