@@ -119,7 +119,7 @@ export const AccordionList = ({
                       ) : (
                         <input
                           type="text"
-                          className="w-full rounded-lg border-none px-2 py-1 focus:outline-none bg-white"
+                          className="w-full rounded-lg border-none bg-white px-2 py-1 focus:outline-none"
                           placeholder={item.placeholder}
                           defaultValue={
                             field[item.name as keyof typeof field] || ""

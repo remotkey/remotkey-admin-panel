@@ -97,7 +97,6 @@ export const GoogleMap = () => {
       toast.error("Please select a location before adding.");
     }
   };
-
   const handlRemoveNearByRestaurants = (index: number) => {
     const nearByRestaurants: LatLng[] = getValues("nearByRestaurants") || [];
     if (nearByRestaurants.length === 1) {
@@ -108,7 +107,6 @@ export const GoogleMap = () => {
     }
     trigger("nearByRestaurants");
   };
-
   // -------------------------------Nearby Rentals ---------------------------------
   const handleAddNearByReantals = async () => {
     const nearByRentals: LatLng[] = getValues("nearByRentals") || [];
