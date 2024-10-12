@@ -8,6 +8,5 @@ export const PropertyFormRSCWrapper = async ({ id }: { id?: string }) => {
     const { data: propertyData } = await getPropertyById({ id });
     data = propertyData;
   }
-
   return <PropertyForm data={data} />;
 };
