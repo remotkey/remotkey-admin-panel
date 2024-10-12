@@ -7,13 +7,21 @@ export const AccordionTitleDescription = ({ data }: { data: LatLng }) => {
       {data?.contactNumber && (
         <div className="flex flex-col gap-[0.31rem] px-5">
           <span className="font_bold_8 text-C_309B5F">Contact Number</span>
-          <p className="font_reg_8 text-C_0E0E0E">{data?.contactNumber}</p>
+          <Link
+            href={`tel:${data?.contactNumber}`}
+            className="font_reg_8 text-C_0E0E0E hover:shadow-none">
+            {data?.contactNumber}
+          </Link>
         </div>
       )}
       {data?.email && (
         <div className="flex flex-col gap-[0.31rem] px-5">
           <span className="font_bold_8 text-C_309B5F">Email</span>
-          <p className="font_reg_8 text-C_0E0E0E">{data?.email}</p>
+          <Link
+            href={`mailto:${data?.email}`}
+            className="font_reg_8 text-C_0E0E0E hover:shadow-none">
+            {data?.email}
+          </Link>
         </div>
       )}
       {data?.website && (
