@@ -37,7 +37,7 @@ export const TabMenu = ({ data }: { data: PropertyInterface }) => {
           {TAB_MENU_DATA.map((text, index) => (
             <Tab
               key={index}
-              className="pb-[0.44rem] hover:border-b-2 hover:border-C_309B5F hover:text-C_002E2E hover:shadow-none focus:outline-none data-[selected]:border-b-2 data-[selected]:border-C_309B5F data-[selected]:text-C_002E2E">
+              className="h-8 pb-[0.44rem] hover:border-b-2 hover:border-C_309B5F hover:text-C_002E2E hover:shadow-none focus:outline-none data-[selected]:border-b-2  data-[selected]:border-C_309B5F data-[selected]:text-C_002E2E">
               {text}
             </Tab>
           ))}

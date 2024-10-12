@@ -1,19 +1,22 @@
 "use client";
-import { useState } from "react";
 import { Icon } from "@/lib/next-image/Icon";
 import { LatLng } from "@/main/property/interfaces";
-import { IoCaretUpOutline, IoCaretDownOutline } from "react-icons/io5";
 import Link from "next/link";
+import { useState } from "react";
+import { IoCaretDownOutline, IoCaretUpOutline } from "react-icons/io5";
 import { AccordionTitleDescription } from "./AccordionTitleDescription";
 
 export const MapListAccordionList = ({
   data,
   icon,
+  index,
 }: {
   data: LatLng;
   icon?: string;
+  index: number;
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(index === 0);
+
   const isVisible =
     data?.contactNumber || data?.email || data?.website || data?.description;
 

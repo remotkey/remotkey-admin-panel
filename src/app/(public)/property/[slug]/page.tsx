@@ -27,12 +27,14 @@ export default async function PropertyPage({
         bookingPageLink={data?.bookingPageLink}
         location={data?.location}
       />
-      <PropertyImage thumbnail={data?.thumbnail} />
+      {data?.thumbnail && <PropertyImage thumbnail={data?.thumbnail} />}
       <div className="flex flex-col gap-[1.875rem]">
         <ContactInterestPrompt />
-        <div className="font_reg_8 rounded-r_125 bg-C_F7F7F7 p-6 text-C_0E0E0E">
-          {data?.thankYouText}
-        </div>
+        {data?.thankYouText && (
+          <div className="font_reg_8 rounded-r_125 bg-C_F7F7F7 p-6 text-C_0E0E0E">
+            {data?.thankYouText}
+          </div>
+        )}
         <hr className="border-C_C7C7C7" />
         <section className="grid grid-cols-1 gap-[1.88rem] md:grid-cols-2">
           <KeyPoints title="Key points of this House" values={data?.usp} />
@@ -43,14 +45,15 @@ export default async function PropertyPage({
           checkIn={`${data?.checkIn?.time} ${data?.checkIn?.period}`}
           checkOut={`${data?.checkOut?.time} ${data?.checkOut?.period}`}
         />
-
         <hr className="border-C_C7C7C7" />
-        <div className="flex flex-col gap-[0.9375rem]">
-          <SectionSubHeading title="Today's Weather" />
-          <div className="rounded-r_08125">
-            <Weather placeName={data?.location} />
+        {data?.location && (
+          <div className="flex flex-col gap-[0.9375rem]">
+            <SectionSubHeading title="Today's Weather" />
+            <div className="rounded-r_08125">
+              <Weather placeName={data?.location} />
+            </div>
           </div>
-        </div>
+        )}
         <TabMenu data={data} />
         <div className="flex flex-col gap-[0.9375rem]">
           <SectionSubHeading title="Hospital / Urgent care near me" />

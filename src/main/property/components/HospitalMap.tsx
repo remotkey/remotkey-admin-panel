@@ -26,6 +26,7 @@ export const HospitalMap = ({ hospitals }: { hospitals: LatLng[] }) => {
           hospitals?.map((item, index) => (
             <MapListAccordionList
               key={index}
+              index={index}
               data={item || []}
               icon="/icons/hospital.svg"
             />
