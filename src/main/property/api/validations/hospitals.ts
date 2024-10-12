@@ -5,7 +5,7 @@ export const HospitalSchema = v.object({
   lat: v.number("Invalid latitude."),
   lng: v.number("Invalid longitude."),
   description: v.optional(v.string()),
-  website: v.pipe(v.string(), v.nonEmpty("Hospital website cannot be empty.")),
+  website: v.optional(v.string()),
   contactNumber: v.optional(v.string()),
   email: v.optional(v.string()),
 });
