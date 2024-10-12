@@ -27,5 +27,6 @@ export const COLOR_PALETTE = {
   C_EA241D: "#EA241D",
   C_232323: "#232323",
   C_D70000: "#D70000",
+  C_F5F5F5: "#F5F5F5",
   C_rgba4: "rgba(18, 18, 18, 0.50)", // dialog overlay color
 };
