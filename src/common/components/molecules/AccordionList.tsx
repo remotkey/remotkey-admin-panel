@@ -59,17 +59,17 @@ export const AccordionList = ({
 
   return (
     <div className="mt-6 rounded-lg border border-C_F7F7F7 bg-gray-100">
-      <h3
+      <div
         className="flex cursor-pointer items-center justify-between rounded-lg bg-C_F7F7F7 px-4 py-3 transition-colors"
         onClick={toggleList}>
         <span className="text-base font-medium">{text}</span>
         <span className="text-gray-600">
           {isOpen ? <HiChevronUp /> : <HiChevronDown />}
         </span>
-      </h3>
+      </div>
       <div
         className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "opacity-100" : "max-h-0 opacity-0"
         }`}>
         <ul className="space-y-2 rounded-b-lg bg-white px-4 py-3">
           {fields.map((field, index) => (
