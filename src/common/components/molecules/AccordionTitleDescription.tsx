@@ -4,6 +4,12 @@ import Link from "next/link";
 export const AccordionTitleDescription = ({ data }: { data: LatLng }) => {
   return (
     <>
+      {data?.description && (
+        <div className="flex flex-col gap-[0.31rem] px-5">
+          <span className="font_bold_8 text-C_309B5F">Description</span>
+          <p className="font_reg_8 text-C_0E0E0E">{data?.description}</p>
+        </div>
+      )}
       {data?.contactNumber && (
         <div className="flex flex-col gap-[0.31rem] px-5">
           <span className="font_bold_8 text-C_309B5F">Contact Number</span>
@@ -37,12 +43,6 @@ export const AccordionTitleDescription = ({ data }: { data: LatLng }) => {
             className="font_reg_8 cursor-pointer text-C_0E0E0E hover:shadow-none">
             {data?.website || "Not Available"}
           </Link>
-        </div>
-      )}
-      {data?.description && (
-        <div className="flex flex-col gap-[0.31rem] px-5">
-          <span className="font_bold_8 text-C_309B5F">Description</span>
-          <p className="font_reg_8 text-C_0E0E0E">{data?.description}</p>
         </div>
       )}
     </>
