@@ -31,8 +31,8 @@ export default async function PropertyPage({
       <div className="flex flex-col gap-[1.875rem]">
         <ContactInterestPrompt />
         {data?.thankYouText && (
-          <div className="font_reg_8 rounded-r_125 bg-C_F7F7F7 p-6 text-C_0E0E0E">
-            {data?.thankYouText}
+          <div className="font_reg_8 whitespace-pre-line rounded-r_125 bg-C_F7F7F7 p-6 text-C_0E0E0E">
+            {`${data.thankYouText}`}
           </div>
         )}
         <hr className="border-C_C7C7C7" />
