@@ -32,7 +32,7 @@ export const PropertyHeader = ({
         <Button
           hasBgColor
           className="px-8"
-          text="Book Direct and Save Big"
+          text="Book direct and save on fees!"
           url={bookingPageLink || "#"}
           isNewTab
         />

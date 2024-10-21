@@ -42,9 +42,9 @@ export const FOOTER_CONTACT_DATA: FooterContactUsIconType[] = [
 ];
 
 export const TAB_MENU_DATA = [
-  "Restaurant near me",
-  "Ski Rentals and Outdoor Equipment Rentals near me",
-  "Local tours near me",
+  "Our favorite restaurants",
+  "Our favorite gear rental shops",
+  "Our favorite local tours and guides",
 ];
 
 export const FOOTER_SOCIAL_ICONS: FooterSocialIconsType[] = [
