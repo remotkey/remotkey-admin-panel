@@ -5,6 +5,7 @@ export interface InquiryInterface {
   email: string;
   phone: string;
   interestedArea: string;
+  createdAt: Date;
 }
 
 const InquirySchema = new Schema<InquiryInterface>({
@@ -23,6 +24,10 @@ const InquirySchema = new Schema<InquiryInterface>({
   interestedArea: {
     type: String,
     required: [true, "Interested Area is required"],
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 

@@ -46,6 +46,7 @@ export const fetchGenerator = async (
     }
 
     const res = await fetch(`${API_BASE_URL}${finalUrl}`, options);
+
     const resData: ResponseData = await res?.json();
     return {
       data: resData?.data,

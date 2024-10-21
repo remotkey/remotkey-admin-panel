@@ -8,6 +8,13 @@ export const MainHeader = () => {
   const pathname = usePathname();
   if (!pathname) return null;
 
+  const defaultHeaderConfig: MainHeaderProps = {
+    bgColor: "bg-C_default",
+    breadCrumb: "Home",
+    title: "Welcome",
+    coloredTitle: "",
+  };
+
   const headerConfig: Record<string, MainHeaderProps> = {
     "/dashboard": {
       bgColor: "bg-C_013C3C",
@@ -45,9 +52,25 @@ export const MainHeader = () => {
       title: "Edit Property",
       coloredTitle: "",
     },
+    "/inquiries": {
+      bgColor: "bg-C_309B5F",
+      breadCrumb: (
+        <>
+          <Link
+            href="/dashboard"
+            className="text-white hover:underline hover:underline-offset-2 hover:shadow-none">
+            Home
+          </Link>
+          {" / Inquiries"}
+        </>
+      ),
+      title: "Inquiries",
+      coloredTitle: "",
+    },
   };
 
-  const { bgColor, breadCrumb, title, coloredTitle } = headerConfig[pathname];
+  const { bgColor, breadCrumb, title, coloredTitle } =
+    headerConfig[pathname] || defaultHeaderConfig;
   if (!pathname || !headerConfig[pathname]) return null;
 
   return (

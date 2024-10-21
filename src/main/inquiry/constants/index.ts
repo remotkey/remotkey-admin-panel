@@ -15,15 +15,15 @@ export const INQUIRY_FORM_FIELDS: InquiryFormField[] = [
     isMandatory: true,
   },
   {
-    name: "email",
-    label: "Email",
-    placeholder: "Enter your email",
-    isMandatory: true,
-  },
-  {
     name: "phone",
     label: "Phone",
     placeholder: "Enter your phone number",
+    isMandatory: true,
+  },
+  {
+    name: "email",
+    label: "Email",
+    placeholder: "Enter your email",
     isMandatory: true,
   },
   {
