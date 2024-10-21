@@ -13,6 +13,7 @@ export async function POST(request: NextRequest) {
     if (!fullName || !email || !phone || !interestedArea) {
       return NextResponse.json({
         meta: {
+          data: null,
           code: 0,
           message: "Please fill all the fields",
         },
@@ -30,6 +31,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       meta: {
+        data: null,
         code: 1,
         message:
           "Thank you for your interest! Our team will get back to you in next 24 hours",
