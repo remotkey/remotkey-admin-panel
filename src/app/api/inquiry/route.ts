@@ -6,14 +6,11 @@ connect();
 
 export async function POST(request: NextRequest) {
   try {
-    const rawBody = await request.formData();
+    const rawBody = await request.json();
 
-    const name = rawBody.get("name") as string;
-    const email = rawBody.get("email") as string;
-    const phone = rawBody.get("phone") as string;
-    const interestedArea = rawBody.get("interestedArea") as string;
+    const { fullName, email, phone, interestedArea } = rawBody;
 
-    if (!name || !email || !phone || !interestedArea) {
+    if (!fullName || !email || !phone || !interestedArea) {
       return NextResponse.json({
         meta: {
           code: 0,
@@ -23,7 +20,7 @@ export async function POST(request: NextRequest) {
     }
 
     const data = {
-      name,
+      fullName,
       email,
       phone,
       interestedArea,
@@ -40,5 +37,11 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.log(error);
+    return NextResponse.json({
+      meta: {
+        code: 0,
+        message: "An error occurred. Please try again later.",
+      },
+    });
   }
 }

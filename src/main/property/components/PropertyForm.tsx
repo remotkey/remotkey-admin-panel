@@ -68,7 +68,7 @@ export const PropertyForm = ({ data }: { data?: any }) => {
     },
     resolver: valibotResolver(PropertySchema),
   });
-  console.log(data?.hospitals);
+
   const {
     formState: { errors, isSubmitting },
     register,

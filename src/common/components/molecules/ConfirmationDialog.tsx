@@ -36,10 +36,16 @@ export const ConfirmationDialog = ({
             <div className="flex justify-center gap-[0.62rem]">
               <ModalButton
                 text="Yes"
+                type="button"
                 isLoading={isLoading}
                 onClick={onConfirm}
               />
-              <ModalButton text="No" hasBgRed onClick={handleClose} />
+              <ModalButton
+                text="No"
+                type="button"
+                hasBgRed
+                onClick={handleClose}
+              />
             </div>
           </DialogPanel>
         </div>

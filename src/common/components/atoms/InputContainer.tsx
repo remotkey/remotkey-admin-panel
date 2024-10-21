@@ -53,8 +53,8 @@ export const InputContainer = ({
           )}
           {children}
         </div>
+        {error && <FormInputErrorMessage text={error} />}
       </div>
-      {error && <FormInputErrorMessage text={error} />}
     </>
   );
 };

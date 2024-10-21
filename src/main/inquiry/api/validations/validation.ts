@@ -1,7 +1,7 @@
 import * as v from "valibot";
 
 export const InquirySchema = v.object({
-  name: v.pipe(v.string(), v.nonEmpty("Please enter your name.")),
+  fullName: v.pipe(v.string(), v.nonEmpty("Please enter your full name.")),
   email: v.pipe(
     v.string(),
     v.nonEmpty("Please enter your email."),
@@ -10,7 +10,10 @@ export const InquirySchema = v.object({
   phone: v.pipe(
     v.string(),
     v.nonEmpty("Please enter your phone."),
-    v.regex(/^[0-9]{10}$/, "Phone number must be 10 digits.")
+    v.regex(
+      /(?:\d{1}\s)?\(?(\d{3})\)?-?\s?(\d{3})-?\s?(\d{4})/,
+      "Phone number must be 10 digits and valid."
+    )
   ),
   interestedArea: v.pipe(
     v.string(),
