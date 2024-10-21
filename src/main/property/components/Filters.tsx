@@ -19,7 +19,7 @@ export const Filters = () => {
       <div className="flex gap-[0.62rem]">
         <Search />
         <SelectDropdown
-          className="w-32"
+          className="w-32 whitespace-nowrap"
           placeholder="Sort By"
           data={SORT_BY_DATA}
         />
