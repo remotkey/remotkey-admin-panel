@@ -15,7 +15,14 @@ export async function GET(request: NextRequest) {
     const sortType = searchParams.get("sort_type");
     const sortOrder = sortType === "Newest" ? -1 : 1;
 
-    const query = search ? { name: { $regex: search, $options: "i" } } : {};
+    const query = search
+      ? {
+          $or: [
+            { fullName: { $regex: search, $options: "i" } },
+            { phone: { $regex: search, $options: "i" } },
+          ],
+        }
+      : {};
 
     const data = await InquiryModel.find(query)
       .sort({ createdAt: sortOrder })
