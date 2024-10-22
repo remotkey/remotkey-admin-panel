@@ -4,24 +4,63 @@ import { FiWind } from "react-icons/fi";
 import { WiHumidity } from "react-icons/wi";
 import { getWetherByLocation } from "../api/server";
 
-type ForecastDay = {
-  date: string;
-  day: any;
+type WeatherData = {
+  dt_txt: string;
+  main: {
+    temp_min?: number;
+    temp_max?: number;
+    humidity?: number;
+  };
+  wind: {
+    speed?: number;
+  };
+  weather: Array<{
+    icon: string;
+  }>;
 };
 
-export const Weather = async ({ placeName }: { placeName: string }) => {
+type ForecastResponse = {
+  cod: string;
+  list: WeatherData[];
+};
+
+type ForecastDay = {
+  date: string;
+  minTemp: number;
+  maxTemp: number;
+  day: WeatherData;
+};
+
+export const WeatherRange = async ({ placeName }: { placeName: string }) => {
   if (!placeName) return null;
 
-  const forecast = await getWetherByLocation({ place: placeName });
+  const forecast: ForecastResponse = await getWetherByLocation({
+    place: placeName,
+  });
   if (forecast.cod !== "200") return null;
 
-  const uniqueDays = forecast.list.reduce((acc: ForecastDay[], current) => {
+  const uniqueDays = forecast.list.reduce<ForecastDay[]>((acc, current) => {
     const date = new Date(current.dt_txt).toLocaleDateString("en-US", {
       weekday: "long",
     });
 
-    if (!acc.some((entry) => entry.date === date)) {
-      acc.push({ date, day: current });
+    const existingDay = acc.find((entry) => entry.date === date);
+    if (existingDay) {
+      existingDay.minTemp = Math.min(
+        existingDay.minTemp,
+        current.main.temp_min ?? Infinity
+      );
+      existingDay.maxTemp = Math.max(
+        existingDay.maxTemp,
+        current.main.temp_max ?? -Infinity
+      );
+    } else {
+      acc.push({
+        date,
+        minTemp: current.main.temp_min ?? 0,
+        maxTemp: current.main.temp_max ?? 0,
+        day: current,
+      });
     }
     return acc;
   }, []);
@@ -32,7 +71,7 @@ export const Weather = async ({ placeName }: { placeName: string }) => {
         Weekly Weather Forecast for {placeName}
       </span>
       <div className="grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-6">
-        {uniqueDays.map(({ date, day }, index) => (
+        {uniqueDays.map(({ date, minTemp, maxTemp, day }, index) => (
           <div
             key={index}
             className={`flex flex-col items-center rounded-lg p-4 shadow-sm ${
@@ -46,8 +85,8 @@ export const Weather = async ({ placeName }: { placeName: string }) => {
               size={80}
               alt="Weather Icon"
             />
-            <span className="text-xl font-bold text-C_002E2E">
-              {day.main.temp.toFixed(2)}°F
+            <span className="whitespace-nowrap text-sm font-bold text-C_002E2E">
+              {minTemp.toFixed(1)}°F - {maxTemp.toFixed(1)}°F
             </span>
             <div className="mt-2 flex items-center">
               <WiHumidity
@@ -56,7 +95,7 @@ export const Weather = async ({ placeName }: { placeName: string }) => {
                 color={COLOR_PALETTE.C_5EBE76}
               />
               <span className="text-sm text-C_002E2E">
-                {day.main.humidity}%
+                {day.main.humidity ?? 0}%
               </span>
             </div>
             <div className="mt-1 flex items-center">
@@ -66,7 +105,7 @@ export const Weather = async ({ placeName }: { placeName: string }) => {
                 color={COLOR_PALETTE.C_5EBE76}
               />
               <span className="text-sm text-C_002E2E">
-                {day.wind.speed} MPH
+                {day.wind.speed ?? 0} MPH
               </span>
             </div>
           </div>

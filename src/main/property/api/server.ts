@@ -6,7 +6,10 @@ import {
   SearchFiltersParamsTypes,
 } from "@/common/interfaces";
 import { revalidatePath } from "next/cache";
-import { PropertyInterface, WeatherResponseInterface } from "../interfaces";
+import {
+  PropertyInterface,
+  WeatherForecastResponseInterface,
+} from "../interfaces";
 
 export const getProperties = async (
   params?: SearchFiltersParamsTypes
@@ -39,11 +42,11 @@ export const getWetherByLocation = async ({
   place,
 }: {
   place: string;
-}): Promise<WeatherResponseInterface> => {
+}): Promise<WeatherForecastResponseInterface> => {
   const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${place}&units=imperial&appid=${process.env.WEATHER_API_KEY}`
+    `https://api.openweathermap.org/data/2.5/forecast?q=${place}&units=imperial&appid=${process.env.WEATHER_API_KEY}`
   );
 
-  const data: WeatherResponseInterface = await response.json();
+  const data: WeatherForecastResponseInterface = await response.json();
   return data;
 };

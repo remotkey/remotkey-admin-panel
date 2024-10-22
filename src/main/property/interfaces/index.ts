@@ -110,3 +110,19 @@ export interface WeatherResponseInterface {
   name: string;
   cod: number;
 }
+export interface WeatherForecastResponseInterface {
+  cod: string;
+  list: Array<{
+    dt_txt: string;
+    main: {
+      temp: number;
+      humidity: number;
+    };
+    weather: Array<{
+      icon: string;
+    }>;
+    wind: {
+      speed: number;
+    };
+  }>;
+}
