@@ -9,7 +9,6 @@ import { getPropertyById } from "@/main/property/api/server";
 import { HospitalMap } from "@/main/property/components/HospitalMap";
 import { KeyPoints } from "@/main/property/components/KeyPoints";
 import { Weather } from "@/main/property/components/Weather";
-import { WeatherRange } from "@/main/property/components/WeatherRange";
 import { notFound } from "next/navigation";
 // import { NewsList } from "@/main/components/molecules/NewsList";
 
