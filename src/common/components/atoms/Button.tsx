@@ -11,6 +11,7 @@ export const Button = ({
   icon,
   url,
   className,
+  childClassName,
   hasBgColor,
   isNewTab,
   onClick,
@@ -30,7 +31,11 @@ export const Button = ({
       )}>
       {icon && <Icon src={icon || ""} alt="Icon" size={iconSize || 18} />}
       <span
-        className={`${hasBgColor ? "text-white" : "text-C_5EBE76"} whitespace-nowrap text-base font-medium leading-[150%]`}>
+        className={twMerge(
+          `whitespace-nowrap text-base font-medium leading-[150%]`,
+          hasBgColor ? "text-white" : "text-C_5EBE76",
+          childClassName
+        )}>
         {text}
       </span>
     </Link>

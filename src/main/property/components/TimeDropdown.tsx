@@ -18,11 +18,13 @@ const AM_PM_DATA = [
 
 export const TimeDropdown = ({
   className,
+  childClassName,
   placeholder,
   name,
 }: {
   className?: string;
   placeholder?: string;
+  childClassName?: string;
   name: "checkIn.period" | "checkOut.period";
 }) => {
   const { setValue } = useFormContext<FormValues>();
@@ -45,7 +47,8 @@ export const TimeDropdown = ({
             onBlur={() => setIsFocused(false)}
             className={twMerge(
               "font_med_8 mt-8 flex w-full cursor-pointer items-center justify-between gap-[0.62rem] rounded-r_08125 border border-C_DEDEDE px-4 py-[0.88rem] text-C_938F96 hover:shadow-none",
-              (isFocused || isOpen) && "border-C_309B5F"
+              (isFocused || isOpen) && "border-C_309B5F",
+              childClassName
             )}
             onClick={() => setIsOpen(!isOpen)}>
             <span>{selectedPeriod?.name || placeholder}</span>

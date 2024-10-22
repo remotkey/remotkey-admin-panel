@@ -29,10 +29,15 @@ export async function GET(request: NextRequest) {
       .limit(limit)
       .skip(skip);
 
+    const totalCount = await InquiryModel.countDocuments(query);
+
     return NextResponse.json({
       data,
       meta: {
         code: 1,
+        pagination: {
+          total: totalCount,
+        },
         message: "Inquiry fetched successfully",
       },
     });

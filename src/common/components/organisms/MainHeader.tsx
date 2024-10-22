@@ -3,6 +3,7 @@
 import { MainHeaderProps } from "@/common/interfaces";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { HeaderButton } from "../atoms/buttons/HeaderButton";
 
 export const MainHeader = () => {
   const pathname = usePathname();
@@ -13,6 +14,7 @@ export const MainHeader = () => {
     breadCrumb: "Home",
     title: "Welcome",
     coloredTitle: "",
+    menuButtonColor: "bg-C_309B5F border-C_309B5F",
   };
 
   const headerConfig: Record<string, MainHeaderProps> = {
@@ -21,6 +23,8 @@ export const MainHeader = () => {
       breadCrumb: "Home",
       title: "Welcome to the",
       coloredTitle: "Remôtkey Admin Panel",
+      menuButtonColor: "bg-C_309B5F border-C_309B5F",
+      hasMenuButtons: true,
     },
     "/add-property": {
       bgColor: "bg-C_309B5F",
@@ -66,23 +70,66 @@ export const MainHeader = () => {
       ),
       title: "Inquiries",
       coloredTitle: "",
+      menuButtonColor: "text-white border-white",
+      hasMenuButtons: true,
+    },
+    "/late-checkout-requests": {
+      bgColor: "bg-C_309B5F",
+      breadCrumb: (
+        <>
+          <Link
+            href="/dashboard"
+            className="text-white hover:underline hover:underline-offset-2 hover:shadow-none">
+            Home
+          </Link>
+          {" / late-checkout-requests"}
+        </>
+      ),
+      title: "Late Checkout Requests",
+      coloredTitle: "",
+      menuButtonColor: "text-white border-white",
+      hasMenuButtons: true,
     },
   };
 
-  const { bgColor, breadCrumb, title, coloredTitle } =
-    headerConfig[pathname] || defaultHeaderConfig;
+  const {
+    bgColor,
+    breadCrumb,
+    hasMenuButtons,
+    menuButtonColor,
+    title,
+    coloredTitle,
+  } = headerConfig[pathname] || defaultHeaderConfig;
   if (!pathname || !headerConfig[pathname]) return null;
 
   return (
     <div className={`${bgColor || "bg-C_013C3C"} mt-16 py-10 md:mt-[5.625rem]`}>
       <div className="mx-auto flex max-w-[90vw] flex-col gap-5 md:max-w-[75vw]">
-        <div className="font_med_8 text-white hover:shadow-none">
-          {breadCrumb}
-        </div>
-        <div className="font_bold_11 text-white">
-          {title}
-          {coloredTitle && (
-            <span className="text-C_5EBE76"> {coloredTitle}</span>
+        <div className="flex flex-col justify-between gap-[0.62rem] md:flex-row">
+          <div className="flex flex-col gap-5">
+            <div className="font_med_8 text-white hover:shadow-none">
+              {breadCrumb}
+            </div>
+            <div className="font_bold_11 text-white">
+              {title}
+              {coloredTitle && (
+                <span className="text-C_5EBE76"> {coloredTitle}</span>
+              )}
+            </div>
+          </div>
+          {hasMenuButtons && (
+            <div className="flex gap-[0.62rem] md:flex-col">
+              <HeaderButton
+                url="/inquiries"
+                className={menuButtonColor}
+                text="Real Estate Inquiries"
+              />
+              <HeaderButton
+                url="/late-checkout-requests"
+                className={menuButtonColor}
+                text="Late Checkout Requests"
+              />
+            </div>
           )}
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { PropertyImage } from "@/common/components/atoms/PropertyImage";
 import { SectionSubHeading } from "@/common/components/atoms/SectionSubHeading";
-import { CheckInCheckOut } from "@/common/components/molecules/CheckInCheckOut";
+import { CheckInCheckOutPublic } from "@/common/components/molecules/CheckInCheckOutPublic";
 import { ContactInterestPrompt } from "@/common/components/molecules/ContactInterestPrompt";
 import { LocalNews } from "@/common/components/molecules/LocalNews";
 import { TabMenu } from "@/common/components/molecules/TabMenu";
@@ -41,9 +41,9 @@ export default async function PropertyPage({
           <KeyPoints title="House Rules" values={data?.houseRules} />
         </section>
         <hr className="border-C_C7C7C7" />
-        <CheckInCheckOut
-          checkIn={`${data?.checkIn?.time} ${data?.checkIn?.period}`}
+        <CheckInCheckOutPublic
           checkOut={`${data?.checkOut?.time} ${data?.checkOut?.period}`}
+          propertyId={id}
         />
         <hr className="border-C_C7C7C7" />
         {data?.location && (

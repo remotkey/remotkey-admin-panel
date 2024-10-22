@@ -34,6 +34,7 @@ export interface ButtonTypes {
   isNewTab?: boolean;
   onClick?: () => void;
   iconSize?: number;
+  childClassName?: string;
 }
 
 export interface InputTypes {
@@ -74,6 +75,8 @@ export interface MainHeaderProps {
   breadCrumb: ReactNode;
   title: string;
   coloredTitle?: string;
+  menuButtonColor?: string;
+  hasMenuButtons?: boolean;
 }
 
 export interface IdNameProps {
