@@ -8,7 +8,7 @@ import { PropertyHeader } from "@/common/components/organisms/PropertyHeader";
 import { getPropertyById } from "@/main/property/api/server";
 import { HospitalMap } from "@/main/property/components/HospitalMap";
 import { KeyPoints } from "@/main/property/components/KeyPoints";
-import { Weather } from "@/main/property/components/Weather";
+import { WeatherRange } from "@/main/property/components/WeatherRange";
 import { notFound } from "next/navigation";
 // import { NewsList } from "@/main/components/molecules/NewsList";
 
@@ -50,8 +50,8 @@ export default async function PropertyPage({
           <div className="flex flex-col gap-[0.9375rem]">
             <SectionSubHeading title="Weather This Week" />
             <div className="rounded-r_08125">
-              <Weather placeName={data?.location} />
-              {/* <WeatherRange placeName={data?.location} /> */}
+              {/* <Weather placeName={data?.location} /> */}
+              <WeatherRange placeName={data?.location} />
             </div>
           </div>
         )}
