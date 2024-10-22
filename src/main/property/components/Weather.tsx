@@ -29,7 +29,7 @@ export const Weather = async ({ placeName }: { placeName: string }) => {
   return (
     <div className="flex flex-col items-center justify-center rounded-lg border border-C_C7C7C7 p-6">
       <span className="mb-4 text-center text-2xl font-semibold text-C_002E2E">
-        Weekly Weather Forecast for {placeName}
+        5 Day&apos;s Weather Forecast for {placeName}
       </span>
       <div className="grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-6">
         {uniqueDays.map(({ date, day }, index) => (

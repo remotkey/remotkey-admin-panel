@@ -48,7 +48,7 @@ export default async function PropertyPage({
         <hr className="border-C_C7C7C7" />
         {data?.location && (
           <div className="flex flex-col gap-[0.9375rem]">
-            <SectionSubHeading title="Weather This Week" />
+            <SectionSubHeading title="Weather Information" />
             <div className="rounded-r_08125">
               {/* <Weather placeName={data?.location} /> */}
               <WeatherRange placeName={data?.location} />
