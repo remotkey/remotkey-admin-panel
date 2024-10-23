@@ -18,15 +18,15 @@ export const InquiryTable = async ({
       childClassName: "rounded-l-r_0625",
     },
     {
+      title: "Phone",
+      parentClassName:
+        "font_med_8 border-y border-C_DEDEDE py-[0.94rem] text-start text-C_6E6E6E",
+    },
+    {
       title: "Email",
       parentClassName:
         "font_med_8 border-y border-C_DEDEDE py-[0.94rem] text-start text-C_6E6E6E",
       childClassName: "max-w-60",
-    },
-    {
-      title: "Phone",
-      parentClassName:
-        "font_med_8 border-y border-C_DEDEDE py-[0.94rem] text-start text-C_6E6E6E",
     },
     {
       title: "Interested Area",
