@@ -19,16 +19,20 @@ export const InquiryCard = ({ data }: { data: InquiryInterface[] }) => {
             </div>
           </td>
           <td className="px-4">
-            <div className="font_bold_8 w-60 cursor-pointer">
+            <div className="font_bold_8 w-60 cursor-pointer whitespace-nowrap">
               {item?.fullName}
             </div>
           </td>
-          <td className="font_med_8 px-4 text-C_6E6E6E">{item?.phone}</td>
-          <td className="px-4">
-            <div className="font_med_8 w-60 text-C_6E6E6E">{item?.email}</div>
+          <td className="font_med_8 whitespace-nowrap px-4 text-C_6E6E6E">
+            {item?.phone}
           </td>
           <td className="px-4">
-            <div className="font_med_8 w-60 text-C_6E6E6E">
+            <div className="font_med_8 w-60 whitespace-nowrap text-C_6E6E6E">
+              {item?.email}
+            </div>
+          </td>
+          <td className="px-4">
+            <div className="font_med_8 w-60 whitespace-nowrap text-C_6E6E6E">
               {item?.interestedArea}
             </div>
           </td>
