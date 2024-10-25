@@ -13,7 +13,7 @@ export const Icon = ({
 }: NextIcon) => {
   return (
     <Image
-      src={src || DEFAULT_IMAGE_SRC}
+      src={`${src || DEFAULT_IMAGE_SRC}?t=${new Date().getTime()}`}
       alt={alt}
       width={width || size}
       height={height || size}

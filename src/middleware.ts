@@ -8,7 +8,6 @@ export async function middleware(req: NextRequest) {
   const isHomePage = req.nextUrl.pathname === "/";
   if (token) {
     const isAuthenticated = await validateToken(token);
-    console.log("isAuthenticated", isAuthenticated);
     if ((isAuthenticated && isSignInPage) || isHomePage) {
       return NextResponse.redirect(new URL("/dashboard", req.url));
     }
