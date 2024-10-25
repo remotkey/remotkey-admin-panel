@@ -8,6 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 const interFont = inter.className;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "RemotKey",

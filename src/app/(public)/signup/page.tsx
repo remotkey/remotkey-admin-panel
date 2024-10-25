@@ -1,6 +1,7 @@
 import { MainHeading } from "@/common/components/atoms/MainHeading";
 import { SignUpForm } from "@/main/signup/SignUpFrom";
 import Link from "next/link";
+export const dynamic = "force-dynamic";
 
 export default function Signup() {
   return (

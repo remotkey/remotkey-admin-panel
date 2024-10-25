@@ -3,6 +3,7 @@ import { SearchFiltersParamsTypes } from "@/common/interfaces";
 import { PropertyCheckOutTimeFilters } from "@/main/checkout-time/components/PropertyCheckOutTimeFilters";
 import { PropertyCheckOutTimeTable } from "@/main/checkout-time/components/PropertyCheckOutTimeTable";
 import { Suspense } from "react";
+export const dynamic = "force-dynamic";
 
 export default function CheckoutRequestsPage({
   searchParams,

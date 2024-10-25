@@ -11,6 +11,7 @@ import { KeyPoints } from "@/main/property/components/KeyPoints";
 import { WeatherRange } from "@/main/property/components/WeatherRange";
 import { notFound } from "next/navigation";
 // import { NewsList } from "@/main/components/molecules/NewsList";
+export const dynamic = "force-dynamic";
 
 export default async function PropertyPage({
   searchParams: { id },

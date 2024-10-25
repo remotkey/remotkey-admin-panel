@@ -3,6 +3,7 @@ import { SearchFiltersParamsTypes } from "@/common/interfaces";
 import { Filters } from "@/main/property/components/Filters";
 import { PropertyTable } from "@/main/property/components/PropertyTable";
 import { Suspense } from "react";
+export const dynamic = "force-dynamic";
 
 export default function Dashboard({
   searchParams,

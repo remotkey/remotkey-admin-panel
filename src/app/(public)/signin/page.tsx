@@ -1,5 +1,6 @@
 import { MainHeading } from "@/common/components/atoms/MainHeading";
 import { SignInForm } from "@/main/signIn/SignInForm";
+export const dynamic = "force-dynamic";
 
 export default function SignIn() {
   return (

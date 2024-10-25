@@ -1,6 +1,7 @@
 import { Navbar } from "@/common/components/molecules/NavBar";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "RemotKey - Find the perfect vacation home",

@@ -215,7 +215,7 @@ export async function PUT(request: NextRequest) {
   try {
     const rawBody = await request.formData();
     const file = rawBody.get("thumbnail") as File;
-
+    const qrCodeGenerated = rawBody.get("qrCodeGenerated") as string;
     const parsedData = JSON.parse(rawBody.get("data") as string);
 
     const {
@@ -270,6 +270,12 @@ export async function PUT(request: NextRequest) {
     existingProperty.nearByRestaurants = nearByRestaurants;
     existingProperty.nearByRentals = nearByRentals;
     existingProperty.localTours = localTours;
+
+    // -------------------------------------- Generate QR code --------------------------------------------
+    if (qrCodeGenerated === "true") {
+      const qrCodeUrl = await uploadQrToS3({ slug, _id: existingProperty._id });
+      existingProperty.qrCode = qrCodeUrl;
+    }
 
     // -------------------------------------- Upload Thumbnail --------------------------------------------;
     if (file && file instanceof File) {

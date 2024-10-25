@@ -3,6 +3,7 @@ import { SearchFiltersParamsTypes } from "@/common/interfaces";
 import { InquiryFilters } from "@/main/inquiry/componets/InquiryFilter";
 import { InquiryTable } from "@/main/inquiry/componets/InquiryTable";
 import { Suspense } from "react";
+export const dynamic = "force-dynamic";
 
 export default function InquiriesPage({
   searchParams,
