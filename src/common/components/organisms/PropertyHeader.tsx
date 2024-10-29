@@ -2,10 +2,11 @@ import Image from "next/image";
 import { MainHeading } from "../atoms/MainHeading";
 import { SubHeading } from "../atoms/SubHeading";
 import { Button } from "../atoms/Button";
+import { LatLng } from "@/main/property/interfaces";
 
 interface PropertyHeaderProps {
   name: string;
-  location: string;
+  location: LatLng;
   bookingPageLink: string;
 }
 
@@ -25,7 +26,7 @@ export const PropertyHeader = ({
             height={16.369}
             src="/icons/locationFill.svg"
           />
-          <SubHeading text={location || "Location"} />
+          <SubHeading text={location?.place || "Location"} />
         </div>
       </div>
       <div className="md:ml-auto">

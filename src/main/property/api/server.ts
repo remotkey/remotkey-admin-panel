@@ -7,6 +7,7 @@ import {
 } from "@/common/interfaces";
 import { revalidatePath } from "next/cache";
 import {
+  LatLng,
   PropertyInterface,
   WeatherForecastResponseInterface,
 } from "../interfaces";
@@ -38,13 +39,13 @@ export const getPropertyById = async ({
   };
 };
 
-export const getWetherByLocation = async ({
-  place,
+export const getWeatherByLocation = async ({
+  location,
 }: {
-  place: string;
+  location: LatLng;
 }): Promise<WeatherForecastResponseInterface> => {
   const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/forecast?q=${place}&units=imperial&appid=${process.env.WEATHER_API_KEY}`
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${location?.lat}&lon=${location?.lng}&units=imperial&appid=${process?.env?.WEATHER_API_KEY}`
   );
 
   const data: WeatherForecastResponseInterface = await response.json();
