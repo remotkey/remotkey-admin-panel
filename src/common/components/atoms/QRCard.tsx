@@ -20,7 +20,7 @@ export const QRCard = ({ imagePath }: { imagePath?: string }) => {
       </button>
       <div
         id="printable-content"
-        className="relative mx-auto w-full max-w-md text-center">
+        className="relative mx-auto w-full max-w-[46rem] text-center">
         <Image
           src="/images/qrCodeParent.jpg"
           alt="Tent Card"

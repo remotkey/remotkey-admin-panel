@@ -16,8 +16,7 @@
 
     #printable-content {
         position: absolute;
-        top: 90%;
-        margin: 0 auto;
+        top: -20%;
     }
 
     @page {
