@@ -4,6 +4,34 @@
 
 @import url("../common/theme/theme.css");
 
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #printable-content,
+    #printable-content * {
+        visibility: visible;
+    }
+
+    #printable-content {
+        position: absolute;
+        top: 90%;
+        margin: 0 auto;
+    }
+
+    @page {
+        size: A4;
+        /* Or any other preferred size */
+        margin: 0;
+    }
+
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
 @layer utilities {
     input {
         @apply w-full;
