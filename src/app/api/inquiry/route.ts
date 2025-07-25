@@ -1,3 +1,5 @@
+import { EmailType } from "@/common/enums";
+import { postFetcher } from "@/common/fetchers";
 import { connect } from "@/lib/dbConnect";
 import InquiryModel from "@/model/inquiry/Inquiry";
 import { NextRequest, NextResponse } from "next/server";
@@ -74,6 +76,20 @@ export async function POST(request: NextRequest) {
       phone,
       interestedArea,
     };
+
+    const emailBody = JSON.stringify({
+      type: EmailType.REAL_ESTATE_AGENT_FORM,
+      to: process.env.TARGET_EMAIL_REAL_ESTATE_AGENT_FORM,
+      subject: "New Inquiry Received - Real estate agent Inquiry",
+      body: {
+        name: fullName,
+        email,
+        phone,
+        interestedArea: `${interestedArea}`,
+      },
+    });
+
+    await postFetcher("/send-email", emailBody);
 
     await InquiryModel.create(data);
 

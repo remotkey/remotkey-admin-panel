@@ -1,3 +1,5 @@
+import { EmailType } from "@/common/enums";
+import { postFetcher } from "@/common/fetchers";
 import CheckOutTimeModel from "@/model/checkout-time/checkOutTime";
 import PropertyModel from "@/model/property/Property";
 import { NextRequest, NextResponse } from "next/server";
@@ -75,6 +77,31 @@ export async function POST(request: NextRequest) {
       propertyId,
       checkOut,
     };
+
+    const property = await PropertyModel.findById(propertyId);
+
+    const emailBody = {
+      type: EmailType.LATE_CHECKOUT,
+      to: process.env.TARGET_EMAIL_LATE_CHECKOUT,
+      subject: "Late Check-out Request",
+      body: {
+        name: property?.name,
+        checkOut,
+        createdAt: Date?.now().toString(),
+      },
+    };
+
+    if (!property) {
+      return NextResponse.json({
+        meta: {
+          data: null,
+          code: 0,
+          message: "Property not found",
+        },
+      });
+    }
+
+    await postFetcher("/send-email", JSON.stringify(emailBody));
 
     const checkOutTime = await CheckOutTimeModel.create(data);
 

@@ -14,3 +14,8 @@ export enum SearchFiltersParams {
   SORT = "sort",
   SORT_TYPE = "sort_type",
 }
+
+export enum EmailType {
+  LATE_CHECKOUT = "late_checkout",
+  REAL_ESTATE_AGENT_FORM = "real_estate_agent_form",
+}
