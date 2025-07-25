@@ -45,7 +45,7 @@ export const PropertyCard = ({ data }: { data: PropertyCardProps[] }) => {
           <td className="font_med_8 px-4 text-C_6E6E6E">{item?.city}</td>
           <td className="px-4">
             <div className="font_med_8 w-60 text-C_6E6E6E">
-              {item?.location}
+              {item?.location?.place}
             </div>
           </td>
           <td className="px-4">

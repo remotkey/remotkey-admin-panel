@@ -1,3 +1,13 @@
+export interface LatLng {
+  lat: number;
+  lng: number;
+  place?: string;
+  description?: string;
+  website?: string;
+  contactNumber?: string;
+  email?: string;
+}
+
 export interface PropertyCardProps {
   _id: string;
   rowIndex: number;
@@ -6,7 +16,7 @@ export interface PropertyCardProps {
   name: string;
   slug: string;
   city: string;
-  location: string;
+  location: LatLng;
   qrCode: string;
 }
 
@@ -17,16 +27,6 @@ export interface GoogleMapComponentProps {
   selectedLocation: { lat: number; lng: number } | null;
   error?: string | null;
   markers?: any[];
-}
-
-export interface LatLng {
-  lat: number;
-  lng: number;
-  place?: string;
-  description?: string;
-  website?: string;
-  contactNumber?: string;
-  email?: string;
 }
 
 export interface TimePeriod {
@@ -50,7 +50,7 @@ export interface PropertyInterface {
   name: string;
   slug: string;
   thumbnail: string;
-  location: string;
+  location: LatLng;
   city: string;
   qrCode?: string;
   bookingPageLink: string;

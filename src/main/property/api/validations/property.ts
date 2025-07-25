@@ -5,6 +5,7 @@ import { houseRuleSchema } from "./houseRules";
 import { NearByRestaurantsSchema } from "./nearbyrestaurants";
 import { NearByRentals } from "./nearbyrentals";
 import { LocalTours } from "./localtours";
+import { Location } from "./location";
 
 export const PropertySchema = v.object({
   id: v.optional(v.string()),
@@ -12,7 +13,7 @@ export const PropertySchema = v.object({
   slug: v.optional(v.string()),
   // thumbnail: v.pipe(v.string(), v.nsonEmpty("Please Select Thumbnail")),
   city: v.pipe(v.string(), v.nonEmpty("Please enter city name.")),
-  location: v.pipe(v.string(), v.nonEmpty("Please enter location name.")),
+  location: Location,
   qrCode: v.optional(v.string()),
   bookingPageLink: v.pipe(
     v.string(),

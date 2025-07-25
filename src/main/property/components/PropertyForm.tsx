@@ -28,7 +28,7 @@ import { UspContainer } from "./UspContainer";
 
 export interface FormValues {
   id?: string;
-  location: string;
+  location: LatLng;
   hospitals: LatLng[];
   nearByRestaurants: LatLng[];
   nearByRentals: LatLng[];
@@ -53,7 +53,11 @@ export const PropertyForm = ({ data }: { data?: any }) => {
       bookingPageLink: data?.bookingPageLink || "",
       city: data?.city || "",
       thankYouText: data?.thankYouText || "",
-      location: data?.location || "",
+      location: {
+        lat: data?.location?.lat || 0,
+        lng: data?.location?.lng || 0,
+        place: data?.location?.place || "",
+      },
       nearByRestaurants: data?.nearByRestaurants || [],
       nearByRentals: data?.nearByRentals || [],
       localTours: data?.localTours || [],

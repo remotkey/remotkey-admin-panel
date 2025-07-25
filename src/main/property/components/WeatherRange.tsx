@@ -2,7 +2,8 @@ import { COLOR_PALETTE } from "@/common/theme/colors";
 import { Icon } from "@/lib/next-image/Icon";
 import { FiWind } from "react-icons/fi";
 import { WiHumidity } from "react-icons/wi";
-import { getWetherByLocation } from "../api/server";
+import { getWeatherByLocation } from "../api/server";
+import { LatLng } from "../interfaces";
 
 type WeatherData = {
   dt_txt: string;
@@ -31,20 +32,16 @@ type ForecastDay = {
   day: WeatherData;
 };
 
-export const WeatherRange = async ({ placeName }: { placeName: string }) => {
-  if (!placeName) return null;
+export const WeatherRange = async ({ location }: { location: LatLng }) => {
+  if (!location) return null;
 
-  const forecast: ForecastResponse = await getWetherByLocation({
-    place: placeName,
-  });
+  const forecast: ForecastResponse = await getWeatherByLocation({ location });
   if (forecast.cod !== "200") return null;
 
   const uniqueDays = forecast.list.reduce<ForecastDay[]>((acc, current) => {
-    const date = new Date(current.dt_txt).toLocaleDateString("en-US", {
-      weekday: "long",
-    });
-
+    const date = new Date(current.dt_txt).toISOString().split("T")[0];
     const existingDay = acc.find((entry) => entry.date === date);
+
     if (existingDay) {
       existingDay.minTemp = Math.min(
         existingDay.minTemp,
@@ -68,7 +65,7 @@ export const WeatherRange = async ({ placeName }: { placeName: string }) => {
   return (
     <div className="flex flex-col items-center justify-center rounded-lg border border-C_C7C7C7 p-6">
       <span className="mb-4 text-center text-2xl font-semibold text-C_002E2E">
-        Weekly Weather Forecast for {placeName}
+        Weekly Weather Forecast for {location?.place}
       </span>
       <div className="grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-6">
         {uniqueDays.map(({ date, minTemp, maxTemp, day }, index) => (
@@ -105,7 +102,7 @@ export const WeatherRange = async ({ placeName }: { placeName: string }) => {
                 color={COLOR_PALETTE.C_5EBE76}
               />
               <span className="text-sm text-C_002E2E">
-                {day.wind.speed ?? 0} MPH
+                {day.wind.speed?.toFixed(1) ?? 0} MPH
               </span>
             </div>
           </div>

@@ -8,6 +8,7 @@ import { NearByRestaurantsSchema } from "./NearByRestaurants";
 import { UspSchema } from "./Usp";
 import { NearByRentals } from "./NearByRentals";
 import { LocalTours } from "./LocalTours";
+import { Location } from "./Location";
 
 const PropertySchema = new Schema<PropertyInterface>({
   id: {
@@ -30,10 +31,7 @@ const PropertySchema = new Schema<PropertyInterface>({
     type: String,
     required: [true, "City is required."],
   },
-  location: {
-    type: String,
-    required: [true, "Location is required."],
-  },
+  location: Location,
   hospitals: {
     type: [HospitalSchema],
     required: [true, "Hospitals are required."],

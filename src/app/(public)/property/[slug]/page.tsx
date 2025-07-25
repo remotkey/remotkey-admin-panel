@@ -8,7 +8,7 @@ import { PropertyHeader } from "@/common/components/organisms/PropertyHeader";
 import { getPropertyById } from "@/main/property/api/server";
 import { HospitalMap } from "@/main/property/components/HospitalMap";
 import { KeyPoints } from "@/main/property/components/KeyPoints";
-import { WeatherRange } from "@/main/property/components/WeatherRange";
+import { Weather } from "@/main/property/components/Weather";
 import { notFound } from "next/navigation";
 // import { NewsList } from "@/main/components/molecules/NewsList";
 export const dynamic = "force-dynamic";
@@ -26,7 +26,7 @@ export default async function PropertyPage({
       <PropertyHeader
         name={data?.name}
         bookingPageLink={data?.bookingPageLink}
-        location={data?.location}
+        location={data?.location || ""}
       />
       {data?.thumbnail && <PropertyImage thumbnail={data?.thumbnail} />}
       <div className="flex flex-col gap-[1.875rem]">
@@ -51,8 +51,8 @@ export default async function PropertyPage({
           <div className="flex flex-col gap-[0.9375rem]">
             <SectionSubHeading title="Weather Information" />
             <div className="rounded-r_08125">
-              {/* <Weather placeName={data?.location} /> */}
-              <WeatherRange placeName={data?.location} />
+              <Weather location={data?.location} />
+              {/* <WeatherRange location={data?.location} /> */}
             </div>
           </div>
         )}
