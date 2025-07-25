@@ -9,6 +9,7 @@ import { getPropertyById } from "@/main/property/api/server";
 import { HospitalMap } from "@/main/property/components/HospitalMap";
 import { KeyPoints } from "@/main/property/components/KeyPoints";
 import { Weather } from "@/main/property/components/Weather";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 // import { NewsList } from "@/main/components/molecules/NewsList";
 export const dynamic = "force-dynamic";
@@ -33,7 +34,20 @@ export default async function PropertyPage({
         <ContactInterestPrompt />
         {data?.thankYouText && (
           <div className="font_reg_8 whitespace-pre-line rounded-r_125 bg-C_F7F7F7 p-6 text-C_0E0E0E">
-            {`${data.thankYouText}`}
+            {data.thankYouText.split(/(https?:\/\/[^\s]+)/g).map((part, idx) =>
+              /https?:\/\/[^\s]+/.test(part) ? (
+                <Link
+                  key={idx}
+                  href={part}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline hover:text-blue-500">
+                  {part}
+                </Link>
+              ) : (
+                <span key={idx}>{part}</span>
+              )
+            )}
           </div>
         )}
         <hr className="border-C_C7C7C7" />
