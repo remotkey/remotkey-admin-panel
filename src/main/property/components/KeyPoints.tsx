@@ -19,7 +19,7 @@ export const KeyPoints = ({ title, icon, values }: KeyPointsInterface) => {
       <div className="mb-[0.88rem] flex flex-col gap-[0.94rem]">
         {values &&
           values.map((item, index) => {
-            const parts = item.value.split(/(https?:\/\/[^\s]+)/g);
+            const parts = item?.value?.split(/(https?:\/\/[^\s]+)/g);
             return (
               <div className="font_reg_7 flex gap-[0.62rem]" key={index}>
                 <Icon
@@ -28,7 +28,7 @@ export const KeyPoints = ({ title, icon, values }: KeyPointsInterface) => {
                   size={25}
                 />
                 <span className="text-C_0E0E0E">
-                  {parts.map((part, idx) =>
+                  {parts?.map((part, idx) =>
                     /https?:\/\/[^\s]+/.test(part) ? (
                       <Link
                         key={idx}
