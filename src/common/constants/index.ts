@@ -23,8 +23,8 @@ export const FOOTER_CONTACT_DATA: FooterContactUsIconType[] = [
   {
     icon: "/icons/phone.svg",
     alt: "phoneIcon",
-    text: "970-445-2014",
-    href: "tel:970-445-2014",
+    text: "970-445-2015",
+    href: "tel:970-445-2015",
   },
   {
     icon: "/icons/mail.svg",

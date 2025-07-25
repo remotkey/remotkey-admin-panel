@@ -12,8 +12,8 @@ export const Navbar = () => {
       <div className="flex items-center gap-5">
         <Button
           icon="/icons/phone.svg"
-          text="970-445-2014"
-          url="tel:970-445-2014"
+          text="970-445-2015"
+          url="tel:970-445-2015"
         />
         <MainWebsiteButton
           text="Go to main Website"
