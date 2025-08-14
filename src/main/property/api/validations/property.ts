@@ -11,7 +11,7 @@ export const PropertySchema = v.object({
   id: v.optional(v.string()),
   name: v.pipe(v.string(), v.nonEmpty("Please enter property name.")),
   slug: v.optional(v.string()),
-  // thumbnail: v.pipe(v.string(), v.nsonEmpty("Please Select Thumbnail")),
+  // thumbnail: v.pipe(v.string(), v.nonEmpty("Please Select Thumbnail")),
   city: v.pipe(v.string(), v.nonEmpty("Please enter city name.")),
   location: Location,
   qrCode: v.optional(v.string()),
@@ -36,7 +36,7 @@ export const PropertySchema = v.object({
     v.nonEmpty("Nearby Local Tours cannot be empty.")
   ),
   thankYouText: v.optional(v.string()),
-  usp: v.pipe(v.array(UspSchema), v.nonEmpty("Please enter atleast one USP.")),
+  usp: v.pipe(v.array(UspSchema), v.nonEmpty("Please enter at least one USP.")),
   checkIn: v.object({
     time: v.pipe(v.string(), v.nonEmpty("Please enter check in time.")),
     period: v.pipe(v.string(), v.nonEmpty("Please enter check in period.")),

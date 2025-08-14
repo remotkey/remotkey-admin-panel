@@ -41,7 +41,11 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "cSpell.words": [
-  "remotkey"
+    "localtours",
+    "nearbyrentals",
+    "nearbyrestaurants",
+    "remotkey",
+    "valibot"
   ],
   "todo-tree.tree.disableCompactFolders": true,
   "workbench.editorAssociations": {

@@ -65,6 +65,12 @@ const PropertySchema = new Schema<PropertyInterface>({
     type: [NearByRestaurantsSchema],
     required: [true, "Nearby restaurants are required."],
   },
+  vendors: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Vendor",
+    },
+  ],
   nearByRentals: {
     type: [NearByRentals],
     required: [true, "Nearby rentals are required."],

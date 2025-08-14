@@ -26,7 +26,7 @@ export const GoogleMapMultipleMarkers = ({
       }
 
       const center = bounds.getCenter();
-      setMapCenter({ lat: center.lat(), lng: center.lng() });
+      setMapCenter({ lat: center?.lat(), lng: center?.lng() });
     }
   }, [markers]);
 
