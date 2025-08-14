@@ -1,0 +1,50 @@
+{
+  "restoreTerminals.terminals": [
+    {
+      "splitTerminals": [
+        {
+          "name": "dev",
+          "commands": ["npm run dev"]
+        }
+      ]
+    },
+    {
+      "splitTerminals": [
+        {
+          "name": "ts",
+          "commands": ["npm run ts"]
+        }
+      ]
+    },
+    {
+      "splitTerminals": [
+        {
+          "name": "git",
+          "commands": [
+            "git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D",
+            "git fetch --prune --all"
+          ]
+        }
+      ]
+    }
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.addMissingImports": "explicit"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[snippets]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "cSpell.words": [
+  "remotkey"
+  ],
+  "todo-tree.tree.disableCompactFolders": true,
+  "workbench.editorAssociations": {
+    "*.svg": "default"
+  }
+}
