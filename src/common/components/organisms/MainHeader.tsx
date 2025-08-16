@@ -90,6 +90,20 @@ export const MainHeader = () => {
       menuButtonColor: "text-white border-white",
       hasMenuButtons: true,
     },
+    "/vendors": {
+      bgColor: "bg-C_013C3C",
+      breadCrumb: (
+        <>
+          <Link
+            href="/dashboard"
+            className="text-white hover:underline hover:underline-offset-2 hover:shadow-none">
+            Home
+          </Link>
+          {" / Vendors"}
+        </>
+      ),
+      title: "Vendors",
+    },
   };
 
   const {

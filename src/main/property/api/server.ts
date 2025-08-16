@@ -8,13 +8,14 @@ import {
 import { revalidatePath } from "next/cache";
 import {
   LatLng,
+  PropertyCardProps,
   PropertyInterface,
   WeatherForecastResponseInterface,
 } from "../interfaces";
 
 export const getProperties = async (
   params?: SearchFiltersParamsTypes
-): Promise<ApiResponseInterface<null>> => {
+): Promise<ApiResponseInterface<PropertyCardProps[]>> => {
   const { data, message, code, meta } = await getFetcher("/property", params);
 
   revalidatePath("/dashboard");

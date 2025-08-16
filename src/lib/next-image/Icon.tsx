@@ -11,12 +11,15 @@ export const Icon = ({
   tabIndexed,
   className,
 }: NextIcon) => {
+  const finalWidth = width ?? size ?? 18;
+  const finalHeight = height ?? size ?? 18;
+
   return (
     <Image
       src={`${src || DEFAULT_IMAGE_SRC}?t=${new Date().getTime()}`}
-      alt={alt}
-      width={width || size}
-      height={height || size}
+      alt={alt || "icon"}
+      width={finalWidth}
+      height={finalHeight}
       priority
       unoptimized
       tabIndex={tabIndexed ? 0 : -1}

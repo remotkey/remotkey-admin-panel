@@ -18,27 +18,42 @@ export const Button = ({
   iconSize,
 }: ButtonTypes) => {
   return (
-    <Link
-      onClick={onClick}
-      href={url || "#"}
-      target={isNewTab ? "_blank" : "_self"}
-      className={twMerge(
-        `flex max-w-fit items-center justify-center px-4 py-2 gap-[0.31rem]`,
-        hasBgColor
-          ? "rounded-r_05 border border-C_5EBE76 bg-C_5EBE76"
-          : "hover:shadow-none",
-        className
-      )}>
-      {icon && <Icon src={icon || ""} alt="Icon" size={iconSize || 18} />}
-      <span
-        className={twMerge(
-          `whitespace-nowrap text-base font-medium leading-[150%]`,
-          hasBgColor ? "text-white" : "text-C_5EBE76",
-          childClassName
-        )}>
-        {text}
-      </span>
-    </Link>
+    <>
+      {text ? (
+        <Link
+          onClick={onClick}
+          href={url || "#"}
+          target={isNewTab ? "_blank" : "_self"}
+          className={twMerge(
+            `flex items-center justify-center gap-[0.31rem] rounded-r_05`,
+            hasBgColor ? "bg-C_5EBE76" : "hover:shadow-none",
+            "px-4 py-2 border border-C_5EBE76",
+            className
+          )}>
+          {icon && <Icon src={icon} alt="Icon" size={iconSize || 18} />}
+          <span
+            className={twMerge(
+              `whitespace-nowrap text-base font-medium leading-[150%]`,
+              hasBgColor ? "text-white" : "text-C_5EBE76",
+              childClassName
+            )}>
+            {text}
+          </span>
+        </Link>
+      ) : (
+        icon && (
+          <div
+            onClick={onClick}
+            className={twMerge(
+              `flex items-center cursor-pointer justify-center`,
+              hasBgColor ? "bg-C_5EBE76 text-white" : "text-C_5EBE76",
+              className
+            )}>
+            <Icon src={icon} alt="Icon" size={iconSize || 18} />
+          </div>
+        )
+      )}
+    </>
   );
 };
 

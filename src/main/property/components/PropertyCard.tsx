@@ -14,6 +14,7 @@ export const PropertyCard = ({ data }: { data: PropertyCardProps[] }) => {
   const perPageLimit = Number(
     searchParams?.get(SearchFiltersParams.PER_PAGE) || 10
   );
+
   return data && data.length
     ? data?.map((item: PropertyCardProps, index: number) => (
         <tr className="bg-C_F7F7F7" key={index}>
@@ -52,7 +53,7 @@ export const PropertyCard = ({ data }: { data: PropertyCardProps[] }) => {
             <QrCode icon={item?.qrCode || ""} />
           </td>
           <td className="px-4 last:rounded-r-r_0625">
-            <ActionButtons id={item?._id} />
+            <ActionButtons deleteDialogModuleName="property" id={item?._id} />
           </td>
         </tr>
       ))

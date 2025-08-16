@@ -1,11 +1,10 @@
 import { DashboardShimmer } from "@/common/components/molecules/Shimmer/DashboardShimmer";
 import { SearchFiltersParamsTypes } from "@/common/interfaces";
-import { Filters } from "@/main/property/components/Filters";
-import { PropertyRSCWrapper } from "@/main/property/components/PropertyRSCWrapper";
+import { VendorFilter } from "@/main/vendor/components/VendorFilters";
 import { Suspense } from "react";
 export const dynamic = "force-dynamic";
 
-export default async function Dashboard({
+export default function InquiriesPage({
   searchParams,
 }: {
   searchParams: SearchFiltersParamsTypes;
@@ -17,10 +16,10 @@ export default async function Dashboard({
           fallback={
             <div className="h-[3.25rem] w-full rounded-r_08125 bg-gray-200"></div>
           }>
-          <Filters />
+          <VendorFilter />
         </Suspense>
         <Suspense fallback={<DashboardShimmer />}>
-          <PropertyRSCWrapper searchParams={searchParams} />
+          <></>
         </Suspense>
       </div>
     </div>
