@@ -14,3 +14,8 @@ export const sanitizeFilename = (filename: string) => {
 
   return sanitized + ext;
 };
+
+export const isClient = () => {
+  const boolVal = typeof window !== "undefined";
+  return boolVal;
+};

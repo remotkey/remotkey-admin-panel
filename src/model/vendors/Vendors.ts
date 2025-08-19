@@ -9,9 +9,11 @@ const VendorSchema = new Schema<VendorInterface>({
     type: String,
     required: [true, "Vendor name is required."],
   },
-  city: {
-    type: String,
+  cities: {
+    type: [String],
     required: [true, "City is required."],
+    set: (values: string[]) =>
+      values?.map((v) => v.trim()).filter((v) => v.length > 0),
   },
   lat: {
     type: Number,

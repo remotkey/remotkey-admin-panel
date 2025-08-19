@@ -1,6 +1,7 @@
 import { DashboardShimmer } from "@/common/components/molecules/Shimmer/DashboardShimmer";
 import { SearchFiltersParamsTypes } from "@/common/interfaces";
 import { VendorFilter } from "@/main/vendor/components/VendorFilters";
+import { VendorsTable } from "@/main/vendor/components/VendorsTable";
 import { Suspense } from "react";
 export const dynamic = "force-dynamic";
 
@@ -19,7 +20,7 @@ export default function InquiriesPage({
           <VendorFilter />
         </Suspense>
         <Suspense fallback={<DashboardShimmer />}>
-          <></>
+          <VendorsTable params={searchParams} />
         </Suspense>
       </div>
     </div>

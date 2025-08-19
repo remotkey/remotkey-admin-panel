@@ -26,6 +26,7 @@ const config = {
       borderRadius: BORDER_RADIUS,
       boxShadow: BOX_SHADOWS,
     },
+    plugins: [require("tailwindcss-animate")],
   },
 } satisfies Config;
 

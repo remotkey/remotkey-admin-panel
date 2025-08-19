@@ -1,6 +1,7 @@
 import Search from "@/common/components/atoms/Search";
 import { SelectDropdown } from "@/common/components/atoms/SelectDropdown";
 import { SORT_BY_DATA } from "@/common/constants";
+import { CityDropDown } from "./CityDropDown";
 
 export const VendorFilter = () => {
   return (
@@ -8,18 +9,16 @@ export const VendorFilter = () => {
       <div className="flex items-center justify-between">
         <div className="font_bold_5 whitespace-nowrap">All Vendors</div>
       </div>
-      <div className="flex gap-[0.62rem]">
+      <div className="flex flex-col gap-[0.62rem] lg:flex-row">
         <Search />
-        <SelectDropdown
-          className="w-44 whitespace-nowrap"
-          placeholder="Filter By City"
-          data={SORT_BY_DATA}
-        />
-        <SelectDropdown
-          className="w-32 whitespace-nowrap"
-          placeholder="Sort By"
-          data={SORT_BY_DATA}
-        />
+        <div className="flex gap-[0.62rem] md:justify-end">
+          <CityDropDown />
+          <SelectDropdown
+            className="w-32 whitespace-nowrap"
+            placeholder="Sort By"
+            data={SORT_BY_DATA}
+          />
+        </div>
       </div>
     </div>
   );

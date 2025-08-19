@@ -1,10 +1,11 @@
+import { SetDataToLocalStorage } from "@/common/components/atoms/SetDataToLocalStorage";
+import { Footer } from "@/common/components/organisms/Footer";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
-import { Footer } from "@/common/components/organisms/Footer";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 const interFont = inter.className;
@@ -25,6 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${interFont}`}>
         <SpeedInsights />
+        <SetDataToLocalStorage />
         <Toaster
           position="top-center"
           reverseOrder
