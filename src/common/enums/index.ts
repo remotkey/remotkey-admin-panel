@@ -24,3 +24,9 @@ export enum EmailType {
 export enum LocalStorageKey {
   CITY_LIST = "city_list",
 }
+
+export enum ModuleNames {
+  VENDOR = "vendor",
+  PROPERTY = "property",
+  INQUIRY = "inquiry",
+}

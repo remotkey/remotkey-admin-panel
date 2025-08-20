@@ -49,11 +49,25 @@ export async function POST(request: NextRequest) {
   }
 }
 
+// -------------------------------------- Get all vendors --------------------------------------------
+
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const search = searchParams.get("search") || "";
     const cityParam = searchParams.get("city") || "";
+    const id = searchParams.get("_id");
+
+    if (id) {
+      const data = await VendorModel.findById(id);
+      return NextResponse.json({
+        data,
+        meta: {
+          code: 1,
+          message: "Vendor fetched successfully",
+        },
+      });
+    }
     const cities = cityParam
       ?.split(",")
       ?.map((c) => c.trim())
@@ -110,4 +124,29 @@ export async function GET(request: NextRequest) {
       },
     });
   }
+}
+
+// -------------------------------------- Delete Single Vendor --------------------------------------
+export async function DELETE(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams;
+  const id = searchParams.get("id");
+  const vendor = await VendorModel.findById(id);
+
+  if (!vendor) {
+    return NextResponse.json({
+      meta: {
+        code: 0,
+        message: "Vendor not found",
+      },
+    });
+  }
+
+  await VendorModel.findByIdAndDelete(id);
+
+  return NextResponse.json({
+    meta: {
+      code: 1,
+      message: "Vendor deleted successfully",
+    },
+  });
 }

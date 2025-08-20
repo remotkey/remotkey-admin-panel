@@ -2,9 +2,6 @@ import { VendorInterface } from "@/main/property/interfaces";
 import { Schema, model, models } from "mongoose";
 
 const VendorSchema = new Schema<VendorInterface>({
-  id: {
-    type: String,
-  },
   name: {
     type: String,
     required: [true, "Vendor name is required."],

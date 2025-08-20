@@ -3,7 +3,9 @@
 import { Button } from "@/common/components/atoms/Button";
 import { ConfirmationDialog } from "@/common/components/molecules/ConfirmationDialog";
 import { useDeleteApiHandler } from "@/custom-hooks/useDeleteApiHandler";
-import { deletePropertyApi } from "../api/actions";
+import { deleteVendorApi } from "@/main/vendor/api/actions";
+import { deletePropertyApi } from "../../../main/property/api/actions";
+import { ModuleNames } from "@/common/enums";
 
 export const ActionButtons = ({
   id,
@@ -21,8 +23,13 @@ export const ActionButtons = ({
     isLoading,
   } = useDeleteApiHandler();
 
+  const api =
+    deleteDialogModuleName === ModuleNames.PROPERTY
+      ? deletePropertyApi
+      : deleteDialogModuleName === ModuleNames.VENDOR && deleteVendorApi;
+
   const handleOpenDeleteDialog = (id: string) => {
-    openDeleteDialog(id, deletePropertyApi);
+    api && openDeleteDialog(id, api);
   };
 
   return (
@@ -39,7 +46,13 @@ export const ActionButtons = ({
         </>
       </ConfirmationDialog>
       <Button
-        url={`edit-property?id=${id}`}
+        url={
+          deleteDialogModuleName === ModuleNames.PROPERTY
+            ? `edit-property?id=${id} `
+            : deleteDialogModuleName === ModuleNames.VENDOR
+              ? `edit-vendor?id=${id} `
+              : ""
+        }
         icon="/icons/pencil.svg"
         className="cursor-pointer border border-C_309B5F bg-C_309B5F px-4"
         hasBgColor

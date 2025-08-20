@@ -4,7 +4,7 @@ import { NextFillImage } from "@/lib/next-image/NextFillImage";
 import { QrCode } from "@/main/property/components/QrCode";
 import Link from "next/link";
 import { PropertyCardProps } from "../interfaces";
-import { ActionButtons } from "./ActionButtons";
+import { ActionButtons } from "../../../common/components/molecules/ActionButtons";
 import { SearchFiltersParams } from "@/common/enums";
 import { useSearchParams } from "next/navigation";
 

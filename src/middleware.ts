@@ -35,6 +35,7 @@ export const config = {
     "/dashboard",
     "/add-property",
     "/edit-property",
+    "/vendors",
     "/signin",
   ],
 };

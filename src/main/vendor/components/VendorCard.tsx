@@ -1,6 +1,7 @@
 "use client";
 
 import { SearchFiltersParams } from "@/common/enums";
+import { ActionButtons } from "@/common/components/molecules/ActionButtons";
 import { VendorInterface } from "@/main/property/interfaces";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -34,6 +35,7 @@ export const VendorCard = ({ data }: { data: VendorInterface[] }) => {
               {item?.contactNumber}
             </Link>
           </td>
+
           <td className="px-4">
             <div className="font_med_8 w-60 whitespace-nowrap text-C_6E6E6E">
               <Link
@@ -42,8 +44,6 @@ export const VendorCard = ({ data }: { data: VendorInterface[] }) => {
                 {item?.email}
               </Link>
             </div>
-          </td>
-          <td className="px-4">
             <div className="font_med_8 w-60 whitespace-nowrap text-C_6E6E6E">
               <Link
                 href={
@@ -61,6 +61,12 @@ export const VendorCard = ({ data }: { data: VendorInterface[] }) => {
             <div className="font_med_8 w-60 whitespace-normal break-words text-C_6E6E6E">
               {item?.description}
             </div>
+          </td>
+          <td className="px-4 last:rounded-r-r_0625">
+            <ActionButtons
+              deleteDialogModuleName="vendor"
+              id={item?._id?.toString() || ""}
+            />
           </td>
         </tr>
       ))

@@ -19,7 +19,7 @@ export const Button = ({
 }: ButtonTypes) => {
   return (
     <>
-      {text ? (
+      {text && url ? (
         <Link
           onClick={onClick}
           href={url || "#"}

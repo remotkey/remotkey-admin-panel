@@ -28,13 +28,7 @@ export const VendorsTable = async ({
         "font_med_8 border-y border-C_DEDEDE py-[0.94rem] text-start text-C_6E6E6E",
     },
     {
-      title: "Email",
-      parentClassName:
-        "font_med_8 border-y border-C_DEDEDE py-[0.94rem] text-start text-C_6E6E6E",
-      childClassName: "max-w-60",
-    },
-    {
-      title: "Website",
+      title: "Email & Website",
       parentClassName:
         "font_med_8 border-y border-C_DEDEDE py-[0.94rem] text-start text-C_6E6E6E",
       childClassName: "max-w-60",
@@ -45,6 +39,11 @@ export const VendorsTable = async ({
         "font_med_8 border-y border-C_DEDEDE py-[0.94rem] text-start text-C_6E6E6E",
       childClassName: "max-w-60",
     },
+    {
+      title: "Actions",
+      parentClassName:
+        "font_med_8 border-y border-C_DEDEDE py-[0.94rem] text-start text-C_6E6E6E",
+    },
   ];
 
   return (
@@ -52,7 +51,7 @@ export const VendorsTable = async ({
       <div className="overflow-x-auto">
         <table className="min-w-full border-separate border-spacing-y-[0.69rem]">
           <thead>
-            <tr>
+            <tr className="whitespace-nowrap">
               <th className="font_med_8 border-y border-C_DEDEDE py-[0.94rem] pl-4 text-start text-C_6E6E6E">
                 <div className="flex items-center whitespace-nowrap">Sr No</div>
               </th>

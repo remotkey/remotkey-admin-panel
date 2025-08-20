@@ -104,6 +104,21 @@ export const MainHeader = () => {
       ),
       title: "Vendors",
     },
+    "/edit-vendor": {
+      bgColor: "bg-C_309B5F",
+      breadCrumb: (
+        <>
+          <Link
+            href="/dashboard"
+            className="text-white hover:underline hover:underline-offset-2 hover:shadow-none">
+            Home
+          </Link>
+          {" / Edit Vendor"}
+        </>
+      ),
+      title: "Edit Vendor",
+      coloredTitle: "",
+    },
   };
 
   const {
