@@ -2,6 +2,9 @@ import { VendorInterface } from "@/main/property/interfaces";
 import { Schema, model, models } from "mongoose";
 
 const VendorSchema = new Schema<VendorInterface>({
+  _id: {
+    type: String,
+  },
   name: {
     type: String,
     required: [true, "Vendor name is required."],
@@ -11,14 +14,6 @@ const VendorSchema = new Schema<VendorInterface>({
     required: [true, "City is required."],
     set: (values: string[]) =>
       values?.map((v) => v.trim()).filter((v) => v.length > 0),
-  },
-  lat: {
-    type: Number,
-    required: [true, "Vendor latitude is required."],
-  },
-  lng: {
-    type: Number,
-    required: [true, "Vendor longitude is required."],
   },
   description: {
     type: String,

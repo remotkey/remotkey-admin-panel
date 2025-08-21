@@ -69,10 +69,14 @@ export interface PropertyInterface {
   createdAt: Date;
 }
 
-export interface VendorInterface extends LatLng {
-  _id?: Schema.Types.ObjectId;
+export interface VendorInterface {
+  _id?: string;
   name: string;
   cities: string[];
+  description?: string;
+  website?: string;
+  contactNumber?: string;
+  email?: string;
   createdAt?: Date;
 }
 

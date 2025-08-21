@@ -104,6 +104,27 @@ export const MainHeader = () => {
       ),
       title: "Vendors",
     },
+    "/add-vendor": {
+      bgColor: "bg-C_309B5F",
+      breadCrumb: (
+        <>
+          <Link
+            href="/dashboard"
+            className="text-white hover:underline hover:underline-offset-2 hover:shadow-none">
+            Home
+          </Link>
+          {" / "}
+          <Link
+            href="/vendors"
+            className="text-white hover:underline hover:underline-offset-2 hover:shadow-none">
+            Vendors
+          </Link>
+          {" / Add Vendor"}
+        </>
+      ),
+      title: "Add Vendor",
+      coloredTitle: "",
+    },
     "/edit-vendor": {
       bgColor: "bg-C_309B5F",
       breadCrumb: (
@@ -112,6 +133,12 @@ export const MainHeader = () => {
             href="/dashboard"
             className="text-white hover:underline hover:underline-offset-2 hover:shadow-none">
             Home
+          </Link>
+          {" / "}
+          <Link
+            href="/vendors"
+            className="text-white hover:underline hover:underline-offset-2 hover:shadow-none">
+            Vendors
           </Link>
           {" / Edit Vendor"}
         </>

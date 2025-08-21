@@ -64,7 +64,7 @@ export const VendorCard = ({ data }: { data: VendorInterface[] }) => {
           <td className="px-4 last:rounded-r-r_0625">
             <ActionButtons
               deleteDialogModuleName="vendor"
-              id={item?._id?.toString() || ""}
+              id={item?._id || ""}
             />
           </td>
         </tr>

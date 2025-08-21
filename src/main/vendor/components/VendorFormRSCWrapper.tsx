@@ -8,5 +8,6 @@ export const VendorFormRSCWrapper = async ({ id }: { id?: string }) => {
     const { data: VendorData } = await getVendorById({ id });
     data = VendorData;
   }
+
   return <VendorForm data={data!} />;
 };

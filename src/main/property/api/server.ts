@@ -5,7 +5,6 @@ import {
   ApiResponseInterface,
   SearchFiltersParamsTypes,
 } from "@/common/interfaces";
-import { revalidatePath } from "next/cache";
 import {
   LatLng,
   PropertyCardProps,
@@ -18,7 +17,6 @@ export const getProperties = async (
 ): Promise<ApiResponseInterface<PropertyCardProps[]>> => {
   const { data, message, code, meta } = await getFetcher("/property", params);
 
-  revalidatePath("/dashboard");
   return {
     data,
     message,
