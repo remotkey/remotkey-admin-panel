@@ -10,13 +10,14 @@ export const Icon = ({
   height,
   tabIndexed,
   className,
+  withoutTimeStamp,
 }: NextIcon) => {
   const finalWidth = width ?? size ?? 18;
   const finalHeight = height ?? size ?? 18;
 
   return (
     <Image
-      src={`${src || DEFAULT_IMAGE_SRC}?t=${new Date().getTime()}`}
+      src={`${src || DEFAULT_IMAGE_SRC}${withoutTimeStamp ? "" : `?t=${new Date().getTime()}`}`}
       alt={alt || "icon"}
       width={finalWidth}
       height={finalHeight}

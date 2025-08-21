@@ -30,7 +30,14 @@ export const Button = ({
             "px-4 py-2 border border-C_5EBE76",
             className
           )}>
-          {icon && <Icon src={icon} alt="Icon" size={iconSize || 18} />}
+          {icon && (
+            <Icon
+              withoutTimeStamp
+              src={icon}
+              alt="Icon"
+              size={iconSize || 18}
+            />
+          )}
           <span
             className={twMerge(
               `whitespace-nowrap text-base font-medium leading-[150%]`,
@@ -49,7 +56,12 @@ export const Button = ({
               hasBgColor ? "bg-C_5EBE76 text-white" : "text-C_5EBE76",
               className
             )}>
-            <Icon src={icon} alt="Icon" size={iconSize || 18} />
+            <Icon
+              withoutTimeStamp
+              src={icon}
+              alt="Icon"
+              size={iconSize || 18}
+            />
           </div>
         )
       )}

@@ -23,15 +23,9 @@ export const VendorsTable = async ({
         "font_med_8 border-y border-C_DEDEDE py-[0.94rem] text-start text-C_6E6E6E",
     },
     {
-      title: "Contact Number",
+      title: "Contact Info",
       parentClassName:
         "font_med_8 border-y border-C_DEDEDE py-[0.94rem] text-start text-C_6E6E6E",
-    },
-    {
-      title: "Email & Website",
-      parentClassName:
-        "font_med_8 border-y border-C_DEDEDE py-[0.94rem] text-start text-C_6E6E6E",
-      childClassName: "max-w-60",
     },
     {
       title: "Description",

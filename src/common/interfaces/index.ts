@@ -23,6 +23,7 @@ export interface NextIcon {
   tabIndexed?: boolean;
   className?: string;
   onClick?: () => void;
+  withoutTimeStamp?: boolean;
 }
 
 export interface ButtonTypes {

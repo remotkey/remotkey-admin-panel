@@ -21,30 +21,29 @@ export const VendorCard = ({ data }: { data: VendorInterface[] }) => {
             </div>
           </td>
           <td className="px-4">
-            <div className="font_bold_8 w-60 cursor-pointer whitespace-nowrap">
+            <div className="font_bold_8 w-40 cursor-pointer whitespace-nowrap">
               {item?.name}
             </div>
           </td>
           <td className="font_med_8 whitespace-nowrap px-4 text-C_6E6E6E">
             {item?.cities?.join(", ")}
           </td>
-          <td className="font_med_8 whitespace-nowrap px-4 text-C_6E6E6E">
-            <Link
-              href={`tel:${item?.contactNumber}`}
-              className="font_reg_8 text-C_0E0E0E hover:shadow-none">
-              {item?.contactNumber}
-            </Link>
-          </td>
-
           <td className="px-4">
             <div className="font_med_8 w-60 whitespace-nowrap text-C_6E6E6E">
               <Link
-                href={`mailto:${item?.email}`}
-                className="font_reg_8 text-C_0E0E0E hover:shadow-none">
-                {item?.email}
+                href={`tel:${item?.contactNumber}`}
+                className="font_reg_8 text-C_309B5F hover:shadow-none">
+                {item?.contactNumber}
               </Link>
             </div>
             <div className="font_med_8 w-60 whitespace-nowrap text-C_6E6E6E">
+              <Link
+                href={`mailto:${item?.email}`}
+                className="font_reg_8 text-C_0D264F hover:shadow-none">
+                {item?.email}
+              </Link>
+            </div>
+            <div className="font_med_8 w-60 whitespace-nowrap text-C_0D264F">
               <Link
                 href={
                   item?.website?.startsWith("https://")

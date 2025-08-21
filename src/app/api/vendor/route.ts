@@ -1,6 +1,10 @@
+import { connect } from "@/lib/dbConnect";
 import VendorModel from "@/model/vendors/Vendors";
 import { NextRequest, NextResponse } from "next/server";
 
+connect();
+
+// -------------------------------------- Create a vendor --------------------------------------------
 export async function POST(request: NextRequest) {
   try {
     const rawBody = await request.json();
@@ -87,7 +91,6 @@ export async function GET(request: NextRequest) {
         { email: { $regex: search, $options: "i" } },
       ];
     }
-
     if (cities?.length) {
       (query as any).cities = {
         $in: cities

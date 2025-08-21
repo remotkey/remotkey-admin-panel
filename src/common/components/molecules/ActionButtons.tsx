@@ -33,7 +33,7 @@ export const ActionButtons = ({
   };
 
   return (
-    <div className="flex items-center justify-center gap-5 py-[0.62rem] pr-[0.62rem]">
+    <div className="flex flex-nowrap items-center justify-center gap-3 overflow-visible py-[0.62rem] pr-[0.62rem]">
       <ConfirmationDialog
         isOpen={isDeleteDialogOpen}
         handleClose={handleCloseDialog}
@@ -61,6 +61,7 @@ export const ActionButtons = ({
       <Button
         onClick={() => handleOpenDeleteDialog(id)}
         iconSize={24}
+        className="flex size-10 items-center justify-center"
         icon="/icons/delete.svg"
       />
     </div>
