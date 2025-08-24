@@ -175,10 +175,18 @@ export async function DELETE(request: NextRequest) {
       });
     }
 
+    // Remove vendor ID from all properties that reference it
+    await PropertyModel.updateMany({ vendors: id }, { $pull: { vendors: id } });
+
+    // Delete the vendor
     await VendorModel.findByIdAndDelete(id);
 
     return NextResponse.json({
-      meta: { code: 1, message: "Vendor deleted successfully" },
+      meta: {
+        code: 1,
+        message:
+          "Vendor deleted successfully and removed from all linked properties",
+      },
     });
   } catch (error) {
     return NextResponse.json({
