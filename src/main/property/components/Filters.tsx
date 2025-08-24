@@ -9,22 +9,17 @@ export const Filters = () => {
     <div className="flex flex-col justify-between gap-2 md:flex-row">
       <div className="flex items-center justify-between">
         <div className="font_bold_5 whitespace-nowrap">All Properties</div>
-        <Button
-          url="/add-property"
-          icon="/icons/plusWhite.svg"
-          className="rounded-r_08125 border border-C_309B5F bg-C_309B5F md:hidden"
-          hasBgColor
-          text="Add Property"
-        />
       </div>
-      <div className="flex gap-[0.62rem]">
+      <div className="flex flex-col gap-2 md:flex-row">
         <Search />
-        <SelectDropdown
-          className="w-32 whitespace-nowrap"
-          placeholder="Sort By"
-          data={SORT_BY_DATA}
-        />
-        <CityDropDown />
+        <div className="flex gap-[0.62rem]">
+          <SelectDropdown
+            className="w-32 whitespace-nowrap"
+            placeholder="Sort By"
+            data={SORT_BY_DATA}
+          />
+          <CityDropDown />
+        </div>
       </div>
     </div>
   );

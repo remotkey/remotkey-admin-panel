@@ -57,7 +57,7 @@ export const MainHeader = () => {
       coloredTitle: "",
     },
     "/inquiries": {
-      bgColor: "bg-C_309B5F",
+      bgColor: "bg-C_013C3C",
       breadCrumb: (
         <>
           <Link
@@ -70,11 +70,10 @@ export const MainHeader = () => {
       ),
       title: "Inquiries",
       coloredTitle: "",
-      menuButtonColor: "text-white border-white",
       hasMenuButtons: true,
     },
     "/late-checkout-requests": {
-      bgColor: "bg-C_309B5F",
+      bgColor: "bg-C_013C3C",
       breadCrumb: (
         <>
           <Link
@@ -87,7 +86,6 @@ export const MainHeader = () => {
       ),
       title: "Late Checkout Requests",
       coloredTitle: "",
-      menuButtonColor: "text-white border-white",
       hasMenuButtons: true,
     },
     "/vendors": {
@@ -175,7 +173,7 @@ export const MainHeader = () => {
             </div>
           </div>
           {hasMenuButtons && (
-            <div className="flex justify-center gap-[0.62rem] md:flex-col">
+            <div className="grid grid-cols-2 gap-3 md:gap-4">
               {pathname === "/vendors" && (
                 <HeaderButton
                   url="/add-vendor"
@@ -184,7 +182,6 @@ export const MainHeader = () => {
                   icon="/icons/plusWhite.svg"
                 />
               )}
-
               {pathname !== "/dashboard" && (
                 <HeaderButton
                   url="/dashboard"
@@ -209,6 +206,18 @@ export const MainHeader = () => {
                   icon="/icons/building-white.svg"
                 />
               )}
+              <HeaderButton
+                url="/inquiries"
+                className={menuButtonColor}
+                text="Inquiries"
+                icon="/icons/mail-white.svg"
+              />
+              <HeaderButton
+                url="/late-checkout-requests"
+                className={menuButtonColor}
+                text="Late Checkout"
+                icon="/icons/calender.svg"
+              />
             </div>
           )}
         </div>
