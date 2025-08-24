@@ -81,14 +81,15 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
     if (isLoading) return;
     setIsLoading(true);
     try {
-      const vendorData = formData?.vendors?.[0];
+      const vendorDataArray = formData?.vendors || [];
 
-      if (!vendorData) {
+      if (!vendorDataArray || vendorDataArray.length === 0) {
         throw new Error("No vendor data found");
       }
 
       if (data?._id) {
-        // Update existing vendor
+        // Update existing vendor - only one vendor for updates
+        const vendorData = vendorDataArray[0];
         await updateVendorApi(
           {
             _id: data._id,
@@ -97,11 +98,22 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
           formData?.autoLinkToProperties || false
         );
       } else {
-        // Create new vendor
-        await createVendorApi(
-          vendorData,
-          formData?.autoLinkToProperties || false
-        );
+        // Create multiple vendors - process all vendors in the array
+        const createPromises = vendorDataArray?.map(async (vendorData) => {
+          if (
+            vendorData?.name &&
+            vendorData?.cities &&
+            vendorData?.cities?.length > 0
+          ) {
+            return await createVendorApi(
+              vendorData,
+              formData?.autoLinkToProperties || false
+            );
+          }
+        });
+
+        // Wait for all vendors to be created
+        await Promise.all(createPromises.filter(Boolean));
       }
 
       // Redirect to vendors page or show success message
