@@ -75,14 +75,14 @@ export const VendorCard = ({ data }: { data: VendorInterface[] }) => {
           {item?.website && (
             <Link
               href={
-                item.website.startsWith("https://")
-                  ? item.website
-                  : `https://${item.website}`
+                item?.website?.startsWith("https://")
+                  ? item?.website
+                  : `https://${item?.website}`
               }
               target="_blank"
               rel="noopener noreferrer"
               className="font_reg_8 cursor-pointer text-C_0E0E0E hover:shadow-none">
-              {item.website}
+              {item?.website}
             </Link>
           )}
         </div>
