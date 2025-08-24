@@ -138,9 +138,6 @@ const removeVendorFromAllProperties = async (vendorId: string) => {
     console.log(
       `Successfully removed vendor ${vendorId} from ${properties.length} properties`
     );
-
-    // Revalidate property pages
-    revalidatePath("/property");
   } catch (error) {
     console.error("Error removing vendor from all properties:", error);
     throw new Error("Failed to remove vendor from all properties");

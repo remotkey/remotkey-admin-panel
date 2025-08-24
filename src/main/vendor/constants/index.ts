@@ -13,32 +13,33 @@ export const VENDOR_FORM_FIELDS: VendorFormFields[] = [
   {
     name: "name",
     label: "Vendor Name",
-    placeholder: "e.g., Vail Realty Group",
+    placeholder: "e.g., Alpine Property Services",
     isMandatory: true,
   },
   {
     name: "description",
     label: "Description",
-    placeholder: "e.g., A trusted agency specializing in beachfront properties",
+    placeholder:
+      "e.g., Trusted provider for vacation rental management services",
     type: "textarea",
     isMandatory: false,
   },
   {
     name: "website",
     label: "Website",
-    placeholder: "e.g., https://www.vailrealtygroup.com",
+    placeholder: "e.g., https://www.alpinepropertyservices.com",
     isMandatory: false,
   },
   {
     name: "contactNumber",
     label: "Contact Number",
-    placeholder: "e.g., (305) 555-1234 or +1 305-555-1234",
+    placeholder: "e.g., +1 970-555-1234",
     isMandatory: false,
   },
   {
     name: "email",
     label: "Email",
-    placeholder: "e.g., info@vailrealtygroup.com",
+    placeholder: "e.g., contact@alpinepropertyservices.com",
     isMandatory: false,
   },
 ];
