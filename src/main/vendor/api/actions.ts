@@ -179,15 +179,24 @@ export const deleteVendorApi = async (id: string) => {
     throw new Error("Vendor ID is required");
   }
 
-  const { data, message, code } = await deleteFetcher(`/vendor?id=${id}`);
+  try {
+    // First, remove vendor from all properties as a backup
+    await removeVendorFromAllProperties(id);
 
-  revalidatePath("/vendor");
+    // Then delete the vendor via API
+    const { data, message, code } = await deleteFetcher(`/vendor?id=${id}`);
 
-  return {
-    data: data || null,
-    message: message || "",
-    code: code || 0,
-  };
+    revalidatePath("/vendor");
+
+    return {
+      data: data || null,
+      message: message || "",
+      code: code || 0,
+    };
+  } catch (error) {
+    console.error("Error deleting vendor:", error);
+    throw new Error("Failed to delete vendor");
+  }
 };
 
 export const getVendorById = async ({
