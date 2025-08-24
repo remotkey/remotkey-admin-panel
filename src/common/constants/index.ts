@@ -6,19 +6,6 @@ export const IMAGE_BLUR_DATA_URL =
 export const MAIN_WEBSITE_URL = "https://remotkey.com";
 export const WEBSITE_URL = "";
 
-export const AMENITY_DATA = [
-  {
-    icon: "/icons/bathroom.svg",
-    alt: "bathroomIcon",
-    text: "Bathroom type: private",
-  },
-  {
-    icon: "/icons/bathroom.svg",
-    alt: "bathroomIcon",
-    text: "2 bathrooms",
-  },
-];
-
 export const FOOTER_CONTACT_DATA: FooterContactUsIconType[] = [
   {
     icon: "/icons/phone.svg",
@@ -71,3 +58,91 @@ export const SORT_BY_DATA = [
     name: "Oldest",
   },
 ];
+
+// Dashboard Constants
+export const DASHBOARD_CARDS = [
+  {
+    id: "properties",
+    title: "Total Properties",
+    icon: "/icons/building.svg",
+    link: "/property-management",
+    description: "Manage your property portfolio",
+  },
+  {
+    id: "vendors",
+    title: "Total Vendors",
+    icon: "/icons/building.svg",
+    link: "/vendors",
+    description: "Trusted service providers",
+  },
+  {
+    id: "inquiries",
+    title: "Total Inquiries",
+    icon: "/icons/mail.svg",
+    link: "/inquiries",
+    description: "Customer interest tracking",
+  },
+  {
+    id: "checkout-requests",
+    title: "Late Checkout Requests",
+    icon: "/icons/calender.svg",
+    link: "/late-checkout-requests",
+    description: "Pending checkout approvals",
+  },
+];
+
+export const DASHBOARD_ACTIONS = [
+  {
+    id: "property-management",
+    title: "Property Management",
+    description: "Manage all your properties",
+    icon: "/icons/building.svg",
+    color: "dashboard-gradient-green",
+    textColor: "text-C_002E2E",
+    link: "/property-management",
+  },
+  {
+    id: "add-property",
+    title: "Add Property",
+    description: "Create a new property listing",
+    icon: "/icons/plusWhite.svg",
+    color: "dashboard-gradient-teal",
+    textColor: "text-C_002E2E",
+    link: "/add-property",
+  },
+  {
+    id: "add-vendor",
+    title: "Add Vendor",
+    description: "Add a new trusted vendor",
+    icon: "/icons/plusWhite.svg",
+    color: "dashboard-gradient-blue",
+    textColor: "text-C_002E2E",
+    link: "/add-vendor",
+  },
+  {
+    id: "view-inquiries",
+    title: "View Inquiries",
+    description: "Check property inquiries",
+    icon: "/icons/mail.svg",
+    color: "dashboard-gradient-green",
+    textColor: "text-C_002E2E",
+    link: "/inquiries",
+  },
+  {
+    id: "checkout-requests",
+    title: "Checkout Requests",
+    description: "Manage late checkout requests",
+    icon: "/icons/calender.svg",
+    color: "dashboard-gradient-red",
+    textColor: "text-C_002E2E",
+    link: "/late-checkout-requests",
+  },
+];
+
+export const DASHBOARD_STYLES = {
+  GRID_LAYOUT: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3",
+  ACTION_GRID:
+    "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3",
+  QUICK_ACTIONS_TITLE: "text-lg font-semibold text-C_002E2E mb-3",
+  SECTION_HEADER: "text-lg font-semibold text-C_002E2E mb-3",
+};

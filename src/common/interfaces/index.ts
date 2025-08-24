@@ -79,6 +79,11 @@ export interface MainHeaderProps {
   coloredTitle?: string;
   menuButtonColor?: string;
   hasMenuButtons?: boolean;
+  menuButtons?: Array<{
+    url: string;
+    text: string;
+    icon: string;
+  }>;
 }
 
 export interface IdNameProps {

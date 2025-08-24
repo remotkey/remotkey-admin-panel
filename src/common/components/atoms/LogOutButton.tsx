@@ -14,7 +14,12 @@ export const LogOutButton = () => {
     setIsMounted(true);
   }, []);
 
-  const allowedPaths = ["/dashboard", "/add-property", "/edit-property"];
+  const allowedPaths = [
+    "/dashboard",
+    "/property-management",
+    "/add-property",
+    "/edit-property",
+  ];
   if (!isMounted || !allowedPaths.includes(pathName)) {
     return null;
   }

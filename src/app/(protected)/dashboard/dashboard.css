@@ -1,0 +1,31 @@
+/* Dashboard Custom Gradients - Using Your Theme Colors */
+.dashboard-gradient-green {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 1px solid #5EBE76;
+}
+
+.dashboard-gradient-teal {
+    background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+    border: 1px solid #309B5F;
+}
+
+.dashboard-gradient-blue {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border: 1px solid #013C3C;
+}
+
+.dashboard-gradient-red {
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    border: 1px solid #EA241D;
+}
+
+/* Hover effects - More subtle */
+.dashboard-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth transitions */
+.dashboard-card {
+    transition: all 0.2s ease;
+}

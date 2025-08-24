@@ -33,6 +33,7 @@ export const config = {
     "/",
     "/property",
     "/dashboard",
+    "/property-management",
     "/add-property",
     "/edit-property",
     "/vendors",

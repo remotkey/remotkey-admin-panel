@@ -42,6 +42,7 @@ export default async function PropertyPage({
         name={data?.name || ""}
         bookingPageLink={data?.bookingPageLink || ""}
         location={data?.location || ""}
+        className={`${!data?.thumbnail ? "mb-[1.875rem]" : ""}`}
       />
       {data?.thumbnail && <PropertyImage thumbnail={data.thumbnail} />}
       <div className="flex flex-col gap-[1.875rem]">

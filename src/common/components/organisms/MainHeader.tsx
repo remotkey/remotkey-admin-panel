@@ -56,6 +56,20 @@ export const MainHeader = () => {
       title: "Edit Property",
       coloredTitle: "",
     },
+    "/property-management": {
+      bgColor: "bg-C_013C3C",
+      breadCrumb: (
+        <>
+          <Link
+            href="/dashboard"
+            className="text-white hover:underline hover:underline-offset-2 hover:shadow-none">
+            Home
+          </Link>
+          {" / Property Management"}
+        </>
+      ),
+      title: "Property Management",
+    },
     "/inquiries": {
       bgColor: "bg-C_309B5F",
       breadCrumb: (
@@ -176,14 +190,14 @@ export const MainHeader = () => {
           {hasMenuButtons && (
             <div className="flex gap-[0.62rem] md:flex-col">
               <HeaderButton
-                url="/inquiries"
+                url="/property-management"
                 className={menuButtonColor}
-                text="Real Estate Inquiries"
+                text="Manage Properties"
               />
               <HeaderButton
-                url="/late-checkout-requests"
+                url="/vendors"
                 className={menuButtonColor}
-                text="Late Checkout Requests"
+                text="Manage Vendors"
               />
             </div>
           )}

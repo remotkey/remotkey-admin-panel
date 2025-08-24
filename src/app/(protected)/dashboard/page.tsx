@@ -1,28 +1,17 @@
-import { DashboardShimmer } from "@/common/components/molecules/Shimmer/DashboardShimmer";
-import { SearchFiltersParamsTypes } from "@/common/interfaces";
-import { Filters } from "@/main/property/components/Filters";
-import { PropertyRSCWrapper } from "@/main/property/components/PropertyRSCWrapper";
 import { Suspense } from "react";
-export const dynamic = "force-dynamic";
+import { MainHeader } from "@/common/components/organisms/MainHeader";
+import { DashboardOverview } from "@/common/components/molecules/DashboardOverview";
+import { DashboardShimmer } from "@/common/components/molecules/Shimmer/DashboardShimmer";
+import "./dashboard.css";
 
-export default async function Dashboard({
-  searchParams,
-}: {
-  searchParams: SearchFiltersParamsTypes;
-}) {
+export default function DashboardPage() {
   return (
-    <div className="flex flex-col gap-[1.88rem]">
-      <div className="flex flex-col gap-[1.88rem]">
-        <Suspense
-          fallback={
-            <div className="h-[3.25rem] w-full rounded-r_08125 bg-gray-200"></div>
-          }>
-          <Filters />
-        </Suspense>
+    <>
+      <div className="flex flex-col gap-4 lg:gap-6">
         <Suspense fallback={<DashboardShimmer />}>
-          <PropertyRSCWrapper searchParams={searchParams} />
+          <DashboardOverview />
         </Suspense>
       </div>
-    </div>
+    </>
   );
 }
