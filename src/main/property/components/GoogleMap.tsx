@@ -12,7 +12,7 @@ import { GoogleMapComponent } from "./GoogleMapComponent";
 import { AccordionList } from "@/common/components/molecules/AccordionList";
 import { GoogleMapBottomButton } from "@/common/components/atoms/buttons/GoogleMapBottomButton";
 
-const defaultLocation: LatLng = {
+export const defaultLocation: LatLng = {
   lat: 39.6403,
   lng: -106.3742,
   place: "Vail, CO",

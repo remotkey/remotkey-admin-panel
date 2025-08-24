@@ -36,6 +36,7 @@ export interface ButtonTypes {
   onClick?: () => void;
   iconSize?: number;
   childClassName?: string;
+  isDisabled?: boolean;
 }
 
 export interface InputTypes {

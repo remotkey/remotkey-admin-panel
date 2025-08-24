@@ -4,11 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 connect();
 
-// -------------------------------------- Create a vendor --------------------------------------------
 export async function POST(request: NextRequest) {
   try {
-    const rawBody = await request.json();
-
     const {
       name,
       cities,
@@ -18,10 +15,9 @@ export async function POST(request: NextRequest) {
       website,
       contactNumber,
       email,
-    } = rawBody;
+    } = await request.json();
 
-    // -------------------------------------- Create and save the vendor --------------------------------------------
-    const newVendor = new VendorModel({
+    const newVendor = await VendorModel.create({
       name,
       cities,
       lat,
@@ -32,50 +28,37 @@ export async function POST(request: NextRequest) {
       email,
     });
 
-    const saveVendor = await newVendor.save();
-
-    await saveVendor.save();
-
     return NextResponse.json({
-      data: saveVendor,
-      meta: {
-        code: 1,
-        message: "Vendor created successfully",
-      },
+      data: newVendor,
+      meta: { code: 1, message: "Vendor created successfully" },
     });
   } catch (error) {
     return NextResponse.json({
-      meta: {
-        code: 0,
-        message: "An error occurred",
-      },
+      meta: { code: 0, message: "An error occurred" },
     });
   }
 }
-
-// -------------------------------------- Get all vendors --------------------------------------------
 
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const search = searchParams.get("search") || "";
     const cityParam = searchParams.get("city") || "";
-    const id = searchParams.get("_id");
+    const _id = searchParams.get("_id");
 
-    if (id) {
-      const data = await VendorModel.findById(id);
+    if (_id) {
+      const data = await VendorModel.findById(_id);
       return NextResponse.json({
         data,
-        meta: {
-          code: 1,
-          message: "Vendor fetched successfully",
-        },
+        meta: { code: 1, message: "Vendor fetched successfully" },
       });
     }
+
     const cities = cityParam
-      ?.split(",")
-      ?.map((c) => c.trim())
-      ?.filter(Boolean);
+      .split(",")
+      .map((c) => c?.trim())
+      .filter(Boolean);
+
     const limit = parseInt(searchParams.get("per_page") || "10", 10);
     const page = parseInt(searchParams.get("page") || "1", 10);
     const skip = (page - 1) * limit;
@@ -91,12 +74,9 @@ export async function GET(request: NextRequest) {
         { email: { $regex: search, $options: "i" } },
       ];
     }
+
     if (cities?.length) {
-      (query as any).cities = {
-        $in: cities
-          .filter((c) => c?.trim())
-          .map((c) => new RegExp(c.trim(), "i")),
-      };
+      query.cities = { $in: cities.map((c) => new RegExp(c, "i")) };
     }
 
     const vendors = await VendorModel.find(query)
@@ -121,35 +101,31 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     return NextResponse.json({
-      meta: {
-        code: 0,
-        message: "An error occurred",
-      },
+      meta: { code: 0, message: "An error occurred" },
     });
   }
 }
 
-// -------------------------------------- Delete Single Vendor --------------------------------------
 export async function DELETE(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams;
-  const id = searchParams.get("id");
-  const vendor = await VendorModel.findById(id);
+  try {
+    const id = request.nextUrl.searchParams.get("id");
+    if (!id) throw new Error("Vendor ID is required");
 
-  if (!vendor) {
+    const vendor = await VendorModel.findById(id);
+    if (!vendor) {
+      return NextResponse.json({
+        meta: { code: 0, message: "Vendor not found" },
+      });
+    }
+
+    await VendorModel.findByIdAndDelete(id);
+
     return NextResponse.json({
-      meta: {
-        code: 0,
-        message: "Vendor not found",
-      },
+      meta: { code: 1, message: "Vendor deleted successfully" },
+    });
+  } catch (error) {
+    return NextResponse.json({
+      meta: { code: 0, message: "An error occurred" },
     });
   }
-
-  await VendorModel.findByIdAndDelete(id);
-
-  return NextResponse.json({
-    meta: {
-      code: 1,
-      message: "Vendor deleted successfully",
-    },
-  });
 }

@@ -4,7 +4,7 @@ interface PropertyFormField {
   name: keyof FormValues;
   label: string;
   isMandatory?: boolean;
-  type?: "textarea" | "text";
+  type?: "textarea" | "text" | "cityInput";
   placeholder?: string;
 }
 
@@ -38,7 +38,8 @@ export const PROPERTY_FORM_FIELDS: PropertyFormField[] = [
   {
     name: "city",
     label: "City",
-    placeholder: "Enter City Name",
+    placeholder: "Type here...",
+    type: "cityInput",
     isMandatory: true,
   },
 ];

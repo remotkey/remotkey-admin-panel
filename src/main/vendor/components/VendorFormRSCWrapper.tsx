@@ -1,5 +1,5 @@
 import { getVendorById } from "../api/actions";
-import { VendorForm } from "./VendorForm";
+import { VendorFormMultiple } from "./VendorFormMultiple";
 
 export const VendorFormRSCWrapper = async ({ id }: { id?: string }) => {
   let data = null;
@@ -9,5 +9,5 @@ export const VendorFormRSCWrapper = async ({ id }: { id?: string }) => {
     data = VendorData;
   }
 
-  return <VendorForm data={data!} />;
+  return <VendorFormMultiple data={data!} />;
 };

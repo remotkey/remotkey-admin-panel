@@ -5,6 +5,7 @@ import { InputContainer } from "@/common/components/atoms/InputContainer";
 import { SubmitButton } from "@/common/components/atoms/SubmitButton";
 import { UploadImage } from "@/common/components/atoms/UploadImage";
 import { ConfirmationDialog } from "@/common/components/molecules/ConfirmationDialog";
+import { CityAutoCompleteInput } from "@/main/vendor/components/CityAutoCompleteInput";
 import { Textarea } from "@headlessui/react";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useRouter } from "next/navigation";
@@ -198,13 +199,15 @@ export const PropertyForm = ({ data }: { data?: any }) => {
               error={errors[field.name]?.message}
               inputLabel={field.label}
               isMandatory={field.isMandatory || false}>
-              {field.type === "textarea" ? (
+              {field?.type === "textarea" ? (
                 <Textarea
                   className="block w-full resize-none rounded-lg border-none"
                   placeholder="Type here..."
                   rows={3}
                   {...register(field.name)}
                 />
+              ) : field?.type === "cityInput" ? (
+                <CityAutoCompleteInput name="city" />
               ) : (
                 <input
                   type="text"
