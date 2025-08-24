@@ -26,6 +26,7 @@ import { CheckInCheckOut } from "./CheckInCheckOut";
 import { GoogleMap } from "./GoogleMap";
 import { HouseRules } from "./HouseRules";
 import { UspContainer } from "./UspContainer";
+import { VendorSelector } from "./VendorSelector";
 
 export interface FormValues {
   id?: string;
@@ -44,6 +45,7 @@ export interface FormValues {
   bookingPageLink: string;
   thankYouText: string;
   qrCodeGenerated: boolean;
+  vendors: string[];
 }
 
 export const PropertyForm = ({ data }: { data?: any }) => {
@@ -74,6 +76,7 @@ export const PropertyForm = ({ data }: { data?: any }) => {
       usp: data?.usp?.length ? data?.usp : [{ value: "" }],
       houseRules: data?.houseRules?.length ? data?.houseRules : [{ value: "" }],
       qrCodeGenerated: false,
+      vendors: data?.vendors || [],
     },
     resolver: valibotResolver(PropertySchema),
   });
@@ -217,6 +220,7 @@ export const PropertyForm = ({ data }: { data?: any }) => {
               )}
             </InputContainer>
           ))}
+          <VendorSelector name="vendors" label="Vendors" />
           <CheckInCheckOut />
           <UspContainer />
           <HouseRules />

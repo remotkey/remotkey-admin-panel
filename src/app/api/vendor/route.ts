@@ -1,5 +1,6 @@
 import { connect } from "@/lib/dbConnect";
 import VendorModel from "@/model/vendors/Vendors";
+import PropertyModel from "@/model/property/Property";
 import { NextRequest, NextResponse } from "next/server";
 
 connect();
@@ -35,12 +36,37 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get("search") || "";
     const cityParam = searchParams.get("city") || "";
     const _id = searchParams.get("_id");
+    const propertyId = searchParams.get("propertyId");
 
     if (_id) {
       const data = await VendorModel.findById(_id);
       return NextResponse.json({
         data,
         meta: { code: 1, message: "Vendor fetched successfully" },
+      });
+    }
+
+    if (propertyId) {
+      // Query vendors that are linked to a specific property
+      // First get the property to find vendor IDs
+      const property = await PropertyModel.findById(propertyId);
+
+      if (!property || !property.vendors || property.vendors.length === 0) {
+        return NextResponse.json({
+          data: [],
+          meta: { code: 1, message: "No vendors found for this property" },
+        });
+      }
+
+      // Get vendors by their IDs from the property
+      const vendorIds = property.vendors;
+      const vendors = await VendorModel.find({
+        _id: { $in: vendorIds },
+      });
+
+      return NextResponse.json({
+        data: vendors,
+        meta: { code: 1, message: "Vendors fetched successfully" },
       });
     }
 

@@ -55,13 +55,25 @@ export const GoogleMapMultipleMarkers = ({
             onCloseClick={() => console.log("closed")}
             options={{
               boxClass: "infobox-no-overload",
+              closeBoxURL: "",
+              enableEventPropagation: true,
+              pixelOffset: new window.google.maps.Size(0, -20),
             }}>
             <div
               onClick={() =>
                 handleMapClick(marker.lat, marker.lng, marker.place || "")
               }
-              className="flex flex-col items-center rounded border bg-white px-4 py-2 shadow-md">
-              <span className="px-2 font-bold">{marker.place}</span>
+              className="group cursor-pointer rounded-md border border-C_5EBE76 bg-white px-2 py-1.5 shadow-md transition-all duration-200 hover:scale-105 hover:border-C_002E2E hover:shadow-lg">
+              <div className="flex items-center gap-1.5">
+                <div className="flex items-center justify-center text-white">
+                  <span className="text-[10px]">📍</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xs font-medium leading-tight text-C_002E2E">
+                    {marker?.place}
+                  </span>
+                </div>
+              </div>
             </div>
           </InfoBox>
         </Marker>

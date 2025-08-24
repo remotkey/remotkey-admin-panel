@@ -36,7 +36,7 @@ export const PropertySchema = v.object({
     v.nonEmpty("Nearby Local Tours cannot be empty.")
   ),
   thankYouText: v.optional(v.string()),
-  usp: v.pipe(v.array(UspSchema), v.nonEmpty("Please enter at least one USP.")),
+  usp: v.optional(v.array(UspSchema)),
   checkIn: v.object({
     time: v.pipe(v.string(), v.nonEmpty("Please enter check in time.")),
     period: v.pipe(v.string(), v.nonEmpty("Please enter check in period.")),
@@ -45,10 +45,8 @@ export const PropertySchema = v.object({
     time: v.pipe(v.string(), v.nonEmpty("Please enter check out time.")),
     period: v.pipe(v.string(), v.nonEmpty("Please enter check out period.")),
   }),
-  houseRules: v.pipe(
-    v.array(houseRuleSchema),
-    v.nonEmpty("House Rules cannot be empty.")
-  ),
+  houseRules: v.optional(v.array(houseRuleSchema)),
+  vendors: v.optional(v.array(v.string())),
   createdAt: v.optional(v.date()),
 });
 

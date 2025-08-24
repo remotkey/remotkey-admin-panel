@@ -1,5 +1,3 @@
-import { Schema } from "mongoose";
-
 export interface LatLng {
   lat: number;
   lng: number;
@@ -59,7 +57,7 @@ export interface PropertyInterface {
   thankYouText?: string;
   hospitals: LatLng[];
   nearByRestaurants: LatLng[];
-  vendors: [Schema.Types.ObjectId];
+  vendors: string[];
   nearByRentals: LatLng[];
   localTours: LatLng[];
   usp: UspContainerInterface[];

@@ -68,19 +68,22 @@ export const VENDOR_STATUS_MESSAGES = {
 
 // Form labels and placeholders
 export const VENDOR_FORM_LABELS = {
-  CITIES_AND_LOCATIONS: "Cities & Locations",
+  VENDOR_NAME: "Vendor Name",
+  DESCRIPTION: "Description",
+  WEBSITE: "Website",
+  CONTACT_NUMBER: "Contact Number",
+  EMAIL: "Email",
+  CITIES_AND_LOCATIONS: "Cities and Locations",
+  TYPE_HERE: "Type here...",
+  AUTO_LINK_LABEL: "Auto-link to properties in selected cities",
+  AUTO_LINK_DESCRIPTION:
+    "Automatically link this vendor to properties in the selected cities",
   CITIES: "Cities",
   SELECT_VENDOR_LOCATIONS: "Select Vendor Locations",
   SELECT_LOCATION_IN: "Select location in",
   LOCATION_SUMMARY: "Location Summary",
   SELECTED_LOCATION: "Selected Location",
   NO_LOCATION_SELECTED: "No location selected",
-  CHANGE: "Change",
-  SELECT: "Select",
-  REMOVE: "Remove",
-  ADD_VENDOR: "+ Add Vendor",
-  SAVE_VENDORS: "Save Vendors",
-  TYPE_HERE: "Type here...",
 } as const;
 
 // Button text
@@ -280,4 +283,31 @@ export const CITY_DROPDOWN_LABELS = {
 export const CITY_DROPDOWN_STYLES = {
   CONTAINER: "w-44 whitespace-nowrap",
   MIN_WIDTH: "9.375rem",
+} as const;
+
+// Vendor tab display constants
+export const VENDOR_TAB_LABELS = {
+  TAB_TITLE: "Our trusted vendors",
+  NO_VENDORS: "No vendor locations available for this property.",
+  VENDORS_HEADING: "Our Trusted Vendors",
+  LOCATION_ICON: "📍",
+  PHONE_ICON: "📞",
+  EMAIL_ICON: "✉️",
+  WEBSITE_ICON: "🌐",
+} as const;
+
+// Vendor tab styles
+export const VENDOR_TAB_STYLES = {
+  VENDOR_CARD:
+    "rounded-lg border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md transition-shadow",
+  VENDOR_NAME: "font-semibold text-gray-900",
+  VENDOR_DESCRIPTION: "mt-1 text-sm text-gray-600",
+  CITY_ITEM: "flex items-center gap-2",
+  CITY_NAME: "text-gray-700",
+  COORDINATES: "text-xs text-gray-500",
+  CONTACT_SECTION: "mt-3 pt-3 border-t border-gray-100 space-y-1 text-sm",
+  CONTACT_ITEM: "flex items-center gap-2",
+  CONTACT_LABEL: "text-gray-500",
+  CONTACT_LINK: "text-blue-600 hover:underline",
+  NO_VENDORS_CONTAINER: "rounded-lg bg-gray-50 p-6 text-center text-gray-600",
 } as const;

@@ -80,7 +80,32 @@ export async function POST(request: NextRequest) {
       nearByRestaurants,
       nearByRentals,
       localTours,
+      vendors,
     } = parsedData;
+
+    // Filter out empty USP and House Rules entries
+    const filteredUsp = usp?.filter((item: any) => item?.value?.trim()) || [];
+    const filteredHouseRules =
+      houseRules?.filter((item: any) => item?.value?.trim()) || [];
+
+    // Validate required fields
+    if (!name?.trim()) {
+      return NextResponse.json({
+        meta: { code: 400, message: "Property name is required" },
+      });
+    }
+
+    if (!city?.trim()) {
+      return NextResponse.json({
+        meta: { code: 400, message: "City is required" },
+      });
+    }
+
+    if (!bookingPageLink?.trim()) {
+      return NextResponse.json({
+        meta: { code: 400, message: "Booking page link is required" },
+      });
+    }
 
     // -------------------------------------- Generate uniq slug --------------------------------------------
     const timestamp = Date.now();
@@ -93,20 +118,21 @@ export async function POST(request: NextRequest) {
 
     // -------------------------------------- Create and save the property --------------------------------------------
     const newProperty = new Property({
-      name,
+      name: name.trim(),
       slug,
-      location,
-      bookingPageLink,
-      thankYouText,
-      city,
-      usp,
-      checkIn,
-      checkOut,
-      houseRules,
-      hospitals,
-      nearByRestaurants,
-      nearByRentals,
-      localTours,
+      location: location || { lat: 0, lng: 0, place: "" },
+      bookingPageLink: bookingPageLink.trim(),
+      thankYouText: thankYouText?.trim() || "",
+      city: city.trim(),
+      usp: filteredUsp,
+      checkIn: checkIn || { time: "", period: "" },
+      checkOut: checkOut || { time: "", period: "" },
+      houseRules: filteredHouseRules,
+      hospitals: hospitals || [],
+      nearByRestaurants: nearByRestaurants || [],
+      nearByRentals: nearByRentals || [],
+      localTours: localTours || [],
+      vendors: vendors || [],
     });
 
     const savedProperty = await newProperty.save();
@@ -155,10 +181,11 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
+    console.error("Error creating property:", error);
     return NextResponse.json({
       meta: {
         code: 0,
-        message: "An error occurred",
+        message: "An error occurred while creating the property",
       },
     });
   }
@@ -232,10 +259,35 @@ export async function PUT(request: NextRequest) {
       nearByRestaurants,
       nearByRentals,
       localTours,
+      vendors,
     } = parsedData;
 
+    // Filter out empty USP and House Rules entries
+    const filteredUsp = usp?.filter((item: any) => item?.value?.trim()) || [];
+    const filteredHouseRules =
+      houseRules?.filter((item: any) => item?.value?.trim()) || [];
+
+    // Validate required fields
+    if (!name?.trim()) {
+      return NextResponse.json({
+        meta: { code: 400, message: "Property name is required" },
+      });
+    }
+
+    if (!city?.trim()) {
+      return NextResponse.json({
+        meta: { code: 400, message: "City is required" },
+      });
+    }
+
+    if (!bookingPageLink?.trim()) {
+      return NextResponse.json({
+        meta: { code: 400, message: "Booking page link is required" },
+      });
+    }
+
     // -------------------------------------- Find the existing property --------------------------------------------
-    const existingProperty = await Property.findById(parsedData.id);
+    const existingProperty = await Property.findById(parsedData?.id);
 
     if (!existingProperty) {
       return NextResponse.json({
@@ -256,20 +308,21 @@ export async function PUT(request: NextRequest) {
       .toLowerCase()}-${timestamp}`;
 
     // -------------------------------------- Update the property --------------------------------------------
-    existingProperty.name = name;
+    existingProperty.name = name.trim();
     existingProperty.slug = slug;
-    existingProperty.location = location;
-    existingProperty.bookingPageLink = bookingPageLink;
-    existingProperty.thankYouText = thankYouText;
-    existingProperty.city = city;
-    existingProperty.usp = usp;
-    existingProperty.checkIn = checkIn;
-    existingProperty.checkOut = checkOut;
-    existingProperty.houseRules = houseRules;
-    existingProperty.hospitals = hospitals;
-    existingProperty.nearByRestaurants = nearByRestaurants;
-    existingProperty.nearByRentals = nearByRentals;
-    existingProperty.localTours = localTours;
+    existingProperty.location = location || { lat: 0, lng: 0, place: "" };
+    existingProperty.bookingPageLink = bookingPageLink.trim();
+    existingProperty.thankYouText = thankYouText?.trim() || "";
+    existingProperty.city = city.trim();
+    existingProperty.usp = filteredUsp;
+    existingProperty.checkIn = checkIn || { time: "", period: "" };
+    existingProperty.checkOut = checkOut || { time: "", period: "" };
+    existingProperty.houseRules = filteredHouseRules;
+    existingProperty.hospitals = hospitals || [];
+    existingProperty.nearByRestaurants = nearByRestaurants || [];
+    existingProperty.nearByRentals = nearByRentals || [];
+    existingProperty.localTours = localTours || [];
+    existingProperty.vendors = vendors || [];
 
     // -------------------------------------- Generate QR code --------------------------------------------
     if (qrCodeGenerated === "true") {
@@ -317,16 +370,16 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({
         meta: {
           code: 0,
-          message: "Something Went Wrong. Please try again",
+          message: "Failed to update property",
         },
       });
     }
   } catch (error) {
-    console.log(error);
+    console.error("Error updating property:", error);
     return NextResponse.json({
       meta: {
         code: 0,
-        message: "An error occurred",
+        message: "An error occurred while updating the property",
       },
     });
   }

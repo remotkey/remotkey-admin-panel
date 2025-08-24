@@ -45,6 +45,7 @@ export const TAB_MENU_DATA = [
   "Our favorite restaurants",
   "Our favorite gear rental shops",
   "Our favorite local tours and guides",
+  "Our trusted vendors",
 ];
 
 export const FOOTER_SOCIAL_ICONS: FooterSocialIconsType[] = [

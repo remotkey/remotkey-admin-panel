@@ -6,6 +6,8 @@ import { LocalNews } from "@/common/components/molecules/LocalNews";
 import { TabMenu } from "@/common/components/molecules/TabMenu";
 import { PropertyHeader } from "@/common/components/organisms/PropertyHeader";
 import { getPropertyById } from "@/main/property/api/server";
+import { getVendorsByPropertyId } from "@/main/vendor/api/actions";
+import { VendorInterface } from "@/main/property/interfaces";
 import { HospitalMap } from "@/main/property/components/HospitalMap";
 import { KeyPoints } from "@/main/property/components/KeyPoints";
 import { Weather } from "@/main/property/components/Weather";
@@ -22,14 +24,26 @@ export default async function PropertyPage({
   const { data } = await getPropertyById({ id });
   !data && notFound();
 
+  // Fetch vendors data if property has vendor IDs
+  let vendorsData: VendorInterface[] = [];
+  if (data?.vendors && data.vendors.length > 0) {
+    try {
+      const vendorsResponse = await getVendorsByPropertyId({ propertyId: id });
+      vendorsData = vendorsResponse?.data || [];
+    } catch (error) {
+      console.error("Error fetching vendors:", error);
+      vendorsData = [];
+    }
+  }
+
   return (
     <div className="mx-auto flex max-w-[90vw] flex-col">
       <PropertyHeader
-        name={data?.name}
-        bookingPageLink={data?.bookingPageLink}
+        name={data?.name || ""}
+        bookingPageLink={data?.bookingPageLink || ""}
         location={data?.location || ""}
       />
-      {data?.thumbnail && <PropertyImage thumbnail={data?.thumbnail} />}
+      {data?.thumbnail && <PropertyImage thumbnail={data.thumbnail} />}
       <div className="flex flex-col gap-[1.875rem]">
         <ContactInterestPrompt />
         {data?.thankYouText && (
@@ -51,13 +65,23 @@ export default async function PropertyPage({
           </div>
         )}
         <hr className="border-C_C7C7C7" />
-        <section className="grid grid-cols-1 gap-[1.88rem] md:grid-cols-2">
-          <KeyPoints title="Key points of this House" values={data?.usp} />
-          <KeyPoints title="House Rules" values={data?.houseRules} />
-        </section>
-        <hr className="border-C_C7C7C7" />
+
+        {/* Key Points and House Rules - only show if they have data */}
+        {(!!data?.usp?.length || !!data?.houseRules?.length) && (
+          <>
+            <section className="grid grid-cols-1 gap-[1.88rem] md:grid-cols-2">
+              {!!data?.usp?.length && (
+                <KeyPoints title="Key points of this House" values={data.usp} />
+              )}
+              {!!data?.houseRules?.length && (
+                <KeyPoints title="House Rules" values={data.houseRules} />
+              )}
+            </section>
+            <hr className="border-C_C7C7C7" />
+          </>
+        )}
         <CheckInCheckOutPublic
-          checkOut={`${data?.checkOut?.time} ${data?.checkOut?.period}`}
+          checkOut={`${data?.checkOut?.time || ""} ${data?.checkOut?.period || ""}`}
           propertyId={id}
         />
         <hr className="border-C_C7C7C7" />
@@ -65,15 +89,22 @@ export default async function PropertyPage({
           <div className="flex flex-col gap-[0.9375rem]">
             <SectionSubHeading title="Weather Information" />
             <div className="rounded-r_08125">
-              <Weather location={data?.location} />
+              <Weather location={data.location} />
               {/* <WeatherRange location={data?.location} /> */}
             </div>
           </div>
         )}
-        <TabMenu data={data} />
+        <TabMenu data={data} vendors={vendorsData} />
+        {vendorsData.length === 0 &&
+          data?.vendors &&
+          data.vendors.length > 0 && (
+            <div className="rounded-lg bg-gray-50 p-6 text-center text-gray-600">
+              No vendor information available at the moment.
+            </div>
+          )}
         <div className="flex flex-col gap-[0.9375rem]">
           <SectionSubHeading title="Hospital / Urgent care near me" />
-          <HospitalMap hospitals={data?.hospitals} />
+          <HospitalMap hospitals={data?.hospitals || []} />
         </div>
         <LocalNews />
       </div>

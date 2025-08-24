@@ -48,6 +48,7 @@ const PropertySchema = new Schema<PropertyInterface>({
   },
   usp: {
     type: [UspSchema],
+    default: [],
   },
   checkIn: {
     type: CheckInTimeSchema,
@@ -59,18 +60,16 @@ const PropertySchema = new Schema<PropertyInterface>({
   },
   houseRules: {
     type: [HouseRulesSchema],
-    required: [true, "House rules are required."],
+    default: [],
   },
   nearByRestaurants: {
     type: [NearByRestaurantsSchema],
     required: [true, "Nearby restaurants are required."],
   },
-  vendors: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Vendor",
-    },
-  ],
+  vendors: {
+    type: [String],
+    default: [],
+  },
   nearByRentals: {
     type: [NearByRentals],
     required: [true, "Nearby rentals are required."],

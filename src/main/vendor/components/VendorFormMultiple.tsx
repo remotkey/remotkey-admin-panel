@@ -21,9 +21,11 @@ import {
   VENDOR_ROUTES,
 } from "../constants";
 import { VendorLocationSelector } from "./VendorLocationSelector";
+import { CardCheckBox } from "@/common/components/atoms/CardCheckBox";
 
 interface VendorsFormValues {
   vendors: VendorInterface[];
+  autoLinkToProperties: boolean;
 }
 
 export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
@@ -51,14 +53,21 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
               email: "",
             },
       ],
+      autoLinkToProperties: false,
     },
-    resolver: valibotResolver(v.object({ vendors: v.array(VendorSchema) })),
+    resolver: valibotResolver(
+      v.object({
+        vendors: v.array(VendorSchema),
+        autoLinkToProperties: v.optional(v.boolean()),
+      })
+    ),
   });
 
   const {
     formState: { errors, isSubmitting, isValid },
     register,
     control,
+    watch,
   } = methods;
 
   const { fields, append, remove } = useFieldArray({
@@ -66,21 +75,33 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
     name: "vendors",
   });
 
+  const autoLinkToProperties = watch("autoLinkToProperties");
+
   const onSubmit = async (formData: VendorsFormValues) => {
     if (isLoading) return;
     setIsLoading(true);
     try {
-      const vendorData = formData.vendors[0];
+      const vendorData = formData?.vendors?.[0];
+
+      if (!vendorData) {
+        throw new Error("No vendor data found");
+      }
 
       if (data?._id) {
         // Update existing vendor
-        await updateVendorApi({
-          _id: data._id,
-          ...vendorData,
-        });
+        await updateVendorApi(
+          {
+            _id: data._id,
+            ...vendorData,
+          },
+          formData?.autoLinkToProperties || false
+        );
       } else {
         // Create new vendor
-        await createVendorApi(vendorData);
+        await createVendorApi(
+          vendorData,
+          formData?.autoLinkToProperties || false
+        );
       }
 
       // Redirect to vendors page or show success message
@@ -137,6 +158,27 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
                   defaultValue={field.cities || []}
                 />
               </InputContainer>
+
+              {/* Auto-link to properties checkbox */}
+              <div className="flex items-center gap-3">
+                <CardCheckBox
+                  checked={autoLinkToProperties}
+                  onChange={() =>
+                    methods.setValue(
+                      "autoLinkToProperties",
+                      !autoLinkToProperties
+                    )
+                  }
+                />
+                <div className="flex flex-col">
+                  <label className="cursor-pointer text-sm font-medium text-C_002E2E">
+                    {VENDOR_FORM_LABELS.AUTO_LINK_LABEL}
+                  </label>
+                  <p className="text-xs text-C_6E6E6E">
+                    {VENDOR_FORM_LABELS.AUTO_LINK_DESCRIPTION}
+                  </p>
+                </div>
+              </div>
 
               {fields?.length > 1 && (
                 <button

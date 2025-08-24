@@ -41,7 +41,6 @@ export const HouseRules = () => {
     <>
       <label className="font_med_8 relative w-fit text-black">
         House Rules
-        <span className="ml-1 text-sm font-medium text-red-500">*</span>
       </label>
       <div className="flex flex-col gap-4">
         {fields.map((field, index) => (
