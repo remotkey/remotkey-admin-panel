@@ -88,8 +88,8 @@ export const VendorCard = ({ data }: { data: VendorInterface[] }) => {
         </div>
       </td>
       <td className={VENDOR_TABLE_STYLES.CELL_BASE}>
-        <div className="font_med_8 w-60 whitespace-normal break-words text-C_6E6E6E">
-          {item?.description || "—"}
+        <div className="font_med_8 w-60 text-C_6E6E6E line-clamp-3">
+          {item?.description?.trim() || "—"}
         </div>
       </td>
       <td
