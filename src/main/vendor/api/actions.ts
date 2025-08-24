@@ -110,40 +110,6 @@ const removeVendorFromProperties = async (
   }
 };
 
-// Function to completely remove vendor from all properties
-const removeVendorFromAllProperties = async (vendorId: string) => {
-  try {
-    // Find all properties that reference this vendor
-    const properties = await Property.find({
-      vendors: vendorId,
-    });
-
-    if (!properties || properties.length === 0) {
-      console.log(`No properties found referencing vendor ${vendorId}`);
-      return;
-    }
-
-    // Remove vendor ID from each property
-    const updatePromises = properties.map(async (property: any) => {
-      if (property?.vendors) {
-        property.vendors = property.vendors.filter(
-          (id: string) => id !== vendorId
-        );
-        await property.save();
-      }
-    });
-
-    await Promise.all(updatePromises);
-
-    console.log(
-      `Successfully removed vendor ${vendorId} from ${properties.length} properties`
-    );
-  } catch (error) {
-    console.error("Error removing vendor from all properties:", error);
-    throw new Error("Failed to remove vendor from all properties");
-  }
-};
-
 export const getVendors = async ({
   params,
 }: {
@@ -177,9 +143,6 @@ export const deleteVendorApi = async (id: string) => {
   }
 
   try {
-    // First, remove vendor from all properties as a backup
-    await removeVendorFromAllProperties(id);
-
     // Then delete the vendor via API
     const { data, message, code } = await deleteFetcher(`/vendor?id=${id}`);
 
