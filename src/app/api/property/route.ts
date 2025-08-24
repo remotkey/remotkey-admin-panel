@@ -19,12 +19,31 @@ export async function GET(request: NextRequest) {
   const page = parseInt(searchParams.get("page") || "1", 10);
   const skip = (page - 1) * limit;
   const id = searchParams.get("_id");
+  const cityParam = searchParams.get("city") || "";
+
+  const cities = cityParam
+    .split(",")
+    .map((c) => c?.trim())
+    .filter(Boolean);
+
+  const query: any = {};
 
   let sortType = searchParams.get("sort_type");
   if (sortType === "Newest") {
     sortType = "desc";
   } else if (sortType === "Oldest") {
     sortType = "asc";
+  }
+
+  if (cities?.length) {
+    query.city = { $in: cities.map((c) => new RegExp(c, "i")) };
+  }
+
+  if (search) {
+    query.$or = [
+      { name: { $regex: search, $options: "i" } },
+      { city: { $regex: search, $options: "i" } },
+    ];
   }
 
   if (id) {
@@ -37,8 +56,6 @@ export async function GET(request: NextRequest) {
       },
     });
   }
-
-  const query = search ? { name: { $regex: search, $options: "i" } } : {};
 
   const data = await Property.find(query)
     .sort({ createdAt: sortType === "desc" ? -1 : 1 })

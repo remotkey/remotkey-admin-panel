@@ -2,6 +2,7 @@ import { Button } from "@/common/components/atoms/Button";
 import Search from "@/common/components/atoms/Search";
 import { SelectDropdown } from "@/common/components/atoms/SelectDropdown";
 import { SORT_BY_DATA } from "@/common/constants";
+import { CityDropDown } from "@/main/vendor/components/CityDropDown";
 
 export const Filters = () => {
   return (
@@ -23,13 +24,7 @@ export const Filters = () => {
           placeholder="Sort By"
           data={SORT_BY_DATA}
         />
-        <Button
-          url="/add-property"
-          icon="/icons/plusWhite.svg"
-          className="hidden rounded-r_08125 border border-C_309B5F bg-C_309B5F md:flex"
-          hasBgColor
-          text="Add Property"
-        />
+        <CityDropDown />
       </div>
     </div>
   );

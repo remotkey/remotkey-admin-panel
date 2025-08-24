@@ -92,6 +92,7 @@ export const MainHeader = () => {
     },
     "/vendors": {
       bgColor: "bg-C_013C3C",
+      hasMenuButtons: true,
       breadCrumb: (
         <>
           <Link
@@ -174,17 +175,40 @@ export const MainHeader = () => {
             </div>
           </div>
           {hasMenuButtons && (
-            <div className="flex gap-[0.62rem] md:flex-col">
-              <HeaderButton
-                url="/inquiries"
-                className={menuButtonColor}
-                text="Real Estate Inquiries"
-              />
-              <HeaderButton
-                url="/late-checkout-requests"
-                className={menuButtonColor}
-                text="Late Checkout Requests"
-              />
+            <div className="flex justify-center gap-[0.62rem] md:flex-col">
+              {pathname === "/vendors" && (
+                <HeaderButton
+                  url="/add-vendor"
+                  className={menuButtonColor}
+                  text="Add Vendor"
+                  icon="/icons/plusWhite.svg"
+                />
+              )}
+
+              {pathname !== "/dashboard" && (
+                <HeaderButton
+                  url="/dashboard"
+                  className={menuButtonColor}
+                  text="Manage Properties"
+                  icon="/icons/building-white.svg"
+                />
+              )}
+              {pathname === "/dashboard" && (
+                <HeaderButton
+                  url="/add-property"
+                  className={menuButtonColor}
+                  text="Add Property"
+                  icon="/icons/plusWhite.svg"
+                />
+              )}
+              {pathname !== "/vendors" && (
+                <HeaderButton
+                  url="/vendors"
+                  className={menuButtonColor}
+                  text="Manage Vendors"
+                  icon="/icons/building-white.svg"
+                />
+              )}
             </div>
           )}
         </div>
