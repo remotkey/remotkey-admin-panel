@@ -11,9 +11,16 @@ import { useState } from "react";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 import * as v from "valibot";
+import { createVendorApi, updateVendorApi } from "../api/actions";
 import { VendorSchema } from "../api/validations";
-import { VENDOR_FORM_FIELDS } from "../constants";
-import { CityAutoCompleteInput } from "./CityAutoCompleteInput";
+import {
+  VENDOR_BUTTON_TEXT,
+  VENDOR_FORM_FIELDS,
+  VENDOR_FORM_LABELS,
+  VENDOR_FORM_STYLES,
+  VENDOR_ROUTES,
+} from "../constants";
+import { VendorLocationSelector } from "./VendorLocationSelector";
 
 interface VendorsFormValues {
   vendors: VendorInterface[];
@@ -63,8 +70,23 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
     if (isLoading) return;
     setIsLoading(true);
     try {
-      console.log("Submitting vendors:", formData);
-      // send to API
+      const vendorData = formData.vendors[0];
+
+      if (data?._id) {
+        // Update existing vendor
+        await updateVendorApi({
+          _id: data._id,
+          ...vendorData,
+        });
+      } else {
+        // Create new vendor
+        await createVendorApi(vendorData);
+      }
+
+      // Redirect to vendors page or show success message
+      window.location.href = VENDOR_ROUTES.VENDORS_LIST;
+    } catch (error) {
+      console.error("Error submitting vendor:", error);
     } finally {
       setIsLoading(false);
     }
@@ -73,12 +95,14 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <div className="flex flex-col gap-10">
+        <div className={VENDOR_FORM_STYLES.CONTAINER}>
           {fields.map((field, index) => (
             <div
               key={field.id}
               className={twMerge(
-                !data && "relative flex flex-col gap-5 rounded-lg border p-4"
+                !data
+                  ? VENDOR_FORM_STYLES.FIELD_CONTAINER
+                  : VENDOR_FORM_STYLES.FIELD_CONTAINER_WITH_DATA
               )}>
               {VENDOR_FORM_FIELDS.map((f) => (
                 <InputContainer
@@ -89,7 +113,7 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
                   {f.type === "textarea" ? (
                     <Textarea
                       className="block w-full resize-none rounded-lg border-none"
-                      placeholder="Type here..."
+                      placeholder={VENDOR_FORM_LABELS.TYPE_HERE}
                       rows={3}
                       {...register(`vendors.${index}.${f.name}` as const)}
                     />
@@ -104,12 +128,12 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
               ))}
 
               <InputContainer
-                inputLabel="Cities"
+                inputLabel={VENDOR_FORM_LABELS.CITIES_AND_LOCATIONS}
                 error={errors.vendors?.[index]?.cities?.message}
                 isMandatory>
-                <CityAutoCompleteInput
+                <VendorLocationSelector
                   name={`vendors.${index}.cities`}
-                  isMultipleSelect
+                  isMandatory
                   defaultValue={field.cities || []}
                 />
               </InputContainer>
@@ -119,7 +143,7 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
                   type="button"
                   className="absolute right-2 top-2 text-red-500"
                   onClick={() => remove(index)}>
-                  Remove
+                  {VENDOR_BUTTON_TEXT.REMOVE}
                 </button>
               )}
             </div>
@@ -130,7 +154,7 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
               isDisabled={!isValid}
               hasBgColor
               className="w-fit"
-              text="+ Add Vendor"
+              text={VENDOR_BUTTON_TEXT.ADD_VENDOR}
               onClick={() =>
                 isValid &&
                 append({
@@ -147,11 +171,11 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
           )}
           <DevTool control={control} />
           <SubmitButton
-            className={`flex w-fit items-center justify-center gap-1 !rounded-lg px-6 py-2 ${
-              !isSubmitting && "border border-C_5EBE76"
+            className={`${VENDOR_FORM_STYLES.SUBMIT_BUTTON} ${
+              !isSubmitting && VENDOR_FORM_STYLES.SUBMIT_BUTTON_BORDER
             }`}
             isSubmitting={isSubmitting}>
-            Save Vendors
+            {VENDOR_BUTTON_TEXT.SAVE_VENDORS}
           </SubmitButton>
         </div>
       </form>

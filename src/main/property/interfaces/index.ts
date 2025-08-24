@@ -72,7 +72,13 @@ export interface PropertyInterface {
 export interface VendorInterface {
   _id?: string;
   name: string;
-  cities: string[];
+  cities: Array<{
+    name: string;
+    vendorLocation: {
+      lat: number;
+      lng: number;
+    };
+  }>;
   description?: string;
   website?: string;
   contactNumber?: string;

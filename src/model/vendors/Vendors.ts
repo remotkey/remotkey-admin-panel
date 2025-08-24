@@ -4,10 +4,32 @@ import { VendorInterface } from "@/main/property/interfaces";
 const VendorSchema = new Schema<VendorInterface>({
   name: { type: String, required: [true, "Vendor name is required"] },
   cities: {
-    type: [String],
+    type: [
+      {
+        name: { type: String, required: true },
+        vendorLocation: {
+          lat: { type: Number, required: true },
+          lng: { type: Number, required: true },
+        },
+      },
+    ],
     required: [true, "At least one city is required"],
-    set: (values: string[]) =>
-      values?.map((v) => v.trim()).filter((v) => v.length > 0),
+    validate: {
+      validator: function (cities: any[]) {
+        return (
+          cities &&
+          cities.length > 0 &&
+          cities.every(
+            (city) =>
+              city.name &&
+              city.vendorLocation &&
+              typeof city.vendorLocation.lat === "number" &&
+              typeof city.vendorLocation.lng === "number"
+          )
+        );
+      },
+      message: "Each city must have a name and vendor location coordinates",
+    },
   },
   description: String,
   website: String,

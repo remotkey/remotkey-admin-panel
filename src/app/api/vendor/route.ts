@@ -6,22 +6,12 @@ connect();
 
 export async function POST(request: NextRequest) {
   try {
-    const {
-      name,
-      cities,
-      lat,
-      lng,
-      description,
-      website,
-      contactNumber,
-      email,
-    } = await request.json();
+    const { name, cities, description, website, contactNumber, email } =
+      await request.json();
 
     const newVendor = await VendorModel.create({
       name,
       cities,
-      lat,
-      lng,
       description,
       website,
       contactNumber,
@@ -76,7 +66,7 @@ export async function GET(request: NextRequest) {
     }
 
     if (cities?.length) {
-      query.cities = { $in: cities.map((c) => new RegExp(c, "i")) };
+      query["cities.name"] = { $in: cities.map((c) => new RegExp(c, "i")) };
     }
 
     const vendors = await VendorModel.find(query)
@@ -98,6 +88,47 @@ export async function GET(request: NextRequest) {
           total_pages: Math.ceil(total / limit),
         },
       },
+    });
+  } catch (error) {
+    return NextResponse.json({
+      meta: { code: 0, message: "An error occurred" },
+    });
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  try {
+    const { _id, name, cities, description, website, contactNumber, email } =
+      await request.json();
+
+    if (!_id) {
+      return NextResponse.json({
+        meta: { code: 0, message: "Vendor ID is required" },
+      });
+    }
+
+    const updatedVendor = await VendorModel.findByIdAndUpdate(
+      _id,
+      {
+        name,
+        cities,
+        description,
+        website,
+        contactNumber,
+        email,
+      },
+      { new: true }
+    );
+
+    if (!updatedVendor) {
+      return NextResponse.json({
+        meta: { code: 0, message: "Vendor not found" },
+      });
+    }
+
+    return NextResponse.json({
+      data: updatedVendor,
+      meta: { code: 1, message: "Vendor updated successfully" },
     });
   } catch (error) {
     return NextResponse.json({

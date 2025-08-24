@@ -1,15 +1,19 @@
 import * as v from "valibot";
 
+const VendorLocationSchema = v.object({
+  lat: v.pipe(v.number(), v.minValue(-90), v.maxValue(90)),
+  lng: v.pipe(v.number(), v.minValue(-180), v.maxValue(180)),
+});
+
+const CitySchema = v.object({
+  name: v.pipe(v.string(), v.nonEmpty("City name is required")),
+  vendorLocation: VendorLocationSchema,
+});
+
 export const VendorSchema = v.object({
   name: v.pipe(v.string(), v.nonEmpty("Vendor name is required")),
   cities: v.pipe(
-    v.array(
-      v.pipe(
-        v.string(),
-        v.nonEmpty("City is required"),
-        v.regex(/^[A-Za-z\s]+$/, "City name must contain only letters")
-      )
-    ),
+    v.array(CitySchema),
     v.nonEmpty("Please select at least one city")
   ),
   description: v.optional(v.string()),

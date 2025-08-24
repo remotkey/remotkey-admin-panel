@@ -2,6 +2,11 @@ import { Pagination } from "@/common/components/atoms/Pagination";
 import { SearchFiltersParamsTypes } from "@/common/interfaces";
 import { getVendors } from "../api/actions";
 import { VendorCard } from "./VendorCard";
+import {
+  VENDOR_TABLE_HEADERS,
+  VENDOR_STATUS_MESSAGES,
+  VENDOR_TABLE_STYLES,
+} from "../constants";
 
 export const VendorsTable = async ({
   params,
@@ -12,31 +17,26 @@ export const VendorsTable = async ({
 
   const headers = [
     {
-      title: "Name",
-      parentClassName:
-        "font_med_8 border-y border-C_DEDEDE py-[0.94rem] pl-4 text-start text-C_6E6E6E",
+      title: VENDOR_TABLE_HEADERS.NAME,
+      parentClassName: VENDOR_TABLE_STYLES.HEADER_BASE,
       childClassName: "rounded-l-r_0625",
     },
     {
-      title: "Linked with",
-      parentClassName:
-        "font_med_8 border-y border-C_DEDEDE py-[0.94rem] text-start text-C_6E6E6E",
+      title: VENDOR_TABLE_HEADERS.LINKED_WITH,
+      parentClassName: VENDOR_TABLE_STYLES.HEADER_BASE,
     },
     {
-      title: "Contact Info",
-      parentClassName:
-        "font_med_8 border-y border-C_DEDEDE py-[0.94rem] text-start text-C_6E6E6E",
+      title: VENDOR_TABLE_HEADERS.CONTACT_INFO,
+      parentClassName: VENDOR_TABLE_STYLES.HEADER_BASE,
     },
     {
-      title: "Description",
-      parentClassName:
-        "font_med_8 border-y border-C_DEDEDE py-[0.94rem] text-start text-C_6E6E6E",
+      title: VENDOR_TABLE_HEADERS.DESCRIPTION,
+      parentClassName: VENDOR_TABLE_STYLES.HEADER_BASE,
       childClassName: "max-w-60",
     },
     {
-      title: "Actions",
-      parentClassName:
-        "font_med_8 border-y border-C_DEDEDE py-[0.94rem] text-start text-C_6E6E6E",
+      title: VENDOR_TABLE_HEADERS.ACTIONS,
+      parentClassName: VENDOR_TABLE_STYLES.HEADER_BASE,
     },
   ];
 
@@ -46,12 +46,14 @@ export const VendorsTable = async ({
         <table className="min-w-full border-separate border-spacing-y-[0.69rem]">
           <thead>
             <tr className="whitespace-nowrap">
-              <th className="font_med_8 border-y border-C_DEDEDE py-[0.94rem] pl-4 text-start text-C_6E6E6E">
-                <div className="flex items-center whitespace-nowrap">Sr No</div>
+              <th className={`${VENDOR_TABLE_STYLES.HEADER_BASE} pl-4`}>
+                <div className="flex items-center whitespace-nowrap">
+                  {VENDOR_TABLE_HEADERS.SR_NO}
+                </div>
               </th>
               {headers?.map((el, index) => (
                 <th key={index} className={`${el?.parentClassName} px-4`}>
-                  {el?.title === "Full Name" || el?.title === "Email" ? (
+                  {el?.title === VENDOR_TABLE_HEADERS.NAME ? (
                     <div className={el?.childClassName}>{el?.title}</div>
                   ) : (
                     el?.title
@@ -61,14 +63,12 @@ export const VendorsTable = async ({
             </tr>
           </thead>
           <tbody>
-            {data && !!data.length ? (
+            {data && data.length > 0 ? (
               <VendorCard data={data} />
             ) : (
-              <tr className="bg-C_F7F7F7">
-                <td
-                  className="pl-4 text-center first:rounded-r_0625"
-                  colSpan={10}>
-                  No Vendors found
+              <tr className={VENDOR_TABLE_STYLES.ROW_BASE}>
+                <td className={VENDOR_TABLE_STYLES.NO_DATA_CELL} colSpan={10}>
+                  {VENDOR_STATUS_MESSAGES.NO_VENDORS_FOUND}
                 </td>
               </tr>
             )}

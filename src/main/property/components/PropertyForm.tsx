@@ -5,7 +5,7 @@ import { InputContainer } from "@/common/components/atoms/InputContainer";
 import { SubmitButton } from "@/common/components/atoms/SubmitButton";
 import { UploadImage } from "@/common/components/atoms/UploadImage";
 import { ConfirmationDialog } from "@/common/components/molecules/ConfirmationDialog";
-import { CityAutoCompleteInput } from "@/main/vendor/components/CityAutoCompleteInput";
+import { CityAutoCompleteInput } from "@/main/property/components/CityAutoCompleteInput";
 import { Textarea } from "@headlessui/react";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useRouter } from "next/navigation";

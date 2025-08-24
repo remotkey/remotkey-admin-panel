@@ -7,7 +7,9 @@ export async function GET(request: NextRequest) {
     const citiesFromProperty = (await PropertyModel.distinct(
       "city"
     )) as string[];
-    const citiesFromVendor = (await VendorModel.distinct("cities")) as string[];
+    const citiesFromVendor = (await VendorModel.distinct(
+      "cities.name"
+    )) as string[];
 
     const seen = new Set<string>();
     const uniqueCities: string[] = [];
