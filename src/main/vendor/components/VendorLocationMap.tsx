@@ -99,9 +99,16 @@ export const VendorLocationMap = ({
       if (result.results[0]) {
         const location = result.results[0].geometry.location;
         const newCenter = { lat: location.lat(), lng: location.lng() };
+
+        // Always update map center for better UX when switching cities
         setMapCenter(newCenter);
 
-        if (!selectedLocation) {
+        // Only set a new location if there's no existing location data
+        // This prevents overwriting user-selected locations when switching city tabs
+        if (
+          !selectedLocation ||
+          (selectedLocation.lat === 0 && selectedLocation.lng === 0)
+        ) {
           setSelectedLocation(newCenter);
           setValue(name, newCenter, { shouldValidate: true });
           onLocationSelect?.(newCenter);
@@ -145,7 +152,7 @@ export const VendorLocationMap = ({
       <div className="mb-4">
         <p className="mb-2 text-sm font-medium text-gray-700">
           {VENDOR_LOCATION_TEXT.CLICK_MAP_OR_SEARCH}{" "}
-          <span className="font-semibold text-blue-600">{cityName}</span>
+          <span className="font-semibold text-C_002E2E">{cityName}</span>
         </p>
         {selectedLocation && (
           <div className="inline-flex items-center gap-2 rounded-lg bg-green-50 px-3 py-2">
@@ -187,7 +194,7 @@ export const VendorLocationMap = ({
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder={`${VENDOR_LOCATION_TEXT.SEARCH_IN} ${cityName}...`}
-                className="w-full rounded-xl border-0 bg-white/95 px-4 py-3 pr-12 text-sm font-medium text-gray-900 shadow-lg backdrop-blur-sm placeholder:text-gray-500 focus:border-0 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-xl border-0 bg-white/95 px-4 py-3 pr-12 text-sm font-medium text-gray-900 shadow-lg backdrop-blur-sm placeholder:text-gray-500 focus:border-0 focus:outline-none focus:ring-2 focus:ring-C_5EBE76"
               />
               <div className="absolute right-3 top-1/2 -translate-y-1/2">
                 <svg
