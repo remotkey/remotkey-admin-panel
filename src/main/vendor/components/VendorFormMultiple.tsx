@@ -1,11 +1,11 @@
 "use client";
 
 import { Button } from "@/common/components/atoms/Button";
+import { CardCheckBox } from "@/common/components/atoms/CardCheckBox";
 import { InputContainer } from "@/common/components/atoms/InputContainer";
 import { SubmitButton } from "@/common/components/atoms/SubmitButton";
 import { VendorInterface } from "@/main/property/interfaces";
 import { Textarea } from "@headlessui/react";
-import { DevTool } from "@hookform/devtools";
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useState } from "react";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
@@ -21,7 +21,6 @@ import {
   VENDOR_ROUTES,
 } from "../constants";
 import { VendorLocationSelector } from "./VendorLocationSelector";
-import { CardCheckBox } from "@/common/components/atoms/CardCheckBox";
 
 interface VendorsFormValues {
   vendors: VendorInterface[];
@@ -227,7 +226,6 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
               }}
             />
           )}
-          <DevTool control={control} />
           <SubmitButton
             className={`${VENDOR_FORM_STYLES.SUBMIT_BUTTON} ${
               !isSubmitting && VENDOR_FORM_STYLES.SUBMIT_BUTTON_BORDER
