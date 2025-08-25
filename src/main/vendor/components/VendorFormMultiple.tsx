@@ -165,6 +165,7 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
                 error={errors.vendors?.[index]?.cities?.message}
                 isMandatory>
                 <VendorLocationSelector
+                  key={`${field.id}-cities`}
                   name={`vendors.${index}.cities`}
                   isMandatory
                   defaultValue={field.cities || []}
@@ -209,18 +210,21 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
               hasBgColor
               className="w-fit"
               text={VENDOR_BUTTON_TEXT.ADD_VENDOR}
-              onClick={() =>
-                isValid &&
-                append({
-                  _id: "",
-                  name: "",
-                  cities: [],
-                  description: "",
-                  website: "",
-                  contactNumber: "",
-                  email: "",
-                })
-              }
+              onClick={() => {
+                if (isValid) {
+                  // Clear any existing form errors before adding new vendor
+                  methods.clearErrors();
+                  append({
+                    _id: "",
+                    name: "",
+                    cities: [],
+                    description: "",
+                    website: "",
+                    contactNumber: "",
+                    email: "",
+                  });
+                }
+              }}
             />
           )}
           <DevTool control={control} />
