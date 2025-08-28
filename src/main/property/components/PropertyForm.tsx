@@ -204,7 +204,7 @@ export const PropertyForm = ({ data }: { data?: any }) => {
               isMandatory={field.isMandatory || false}>
               {field?.type === "textarea" ? (
                 <Textarea
-                  className="block w-full resize-none rounded-lg border-none"
+                  className="block w-full  rounded-lg border-none"
                   placeholder="Type here..."
                   rows={3}
                   {...register(field.name)}

@@ -102,7 +102,7 @@ export const AccordionList = ({
                       childClassName="bg-white">
                       {item.type === "textarea" ? (
                         <Textarea
-                          className="block w-full resize-none rounded-lg px-2 py-1 "
+                          className="block w-full rounded-lg px-2 py-1 "
                           placeholder={item.placeholder}
                           rows={3}
                           defaultValue={

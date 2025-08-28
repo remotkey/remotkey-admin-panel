@@ -144,7 +144,7 @@ export const VendorFormMultiple = ({ data }: { data?: VendorInterface }) => {
                   isMandatory={f.isMandatory || false}>
                   {f.type === "textarea" ? (
                     <Textarea
-                      className="block w-full resize-none rounded-lg border-none"
+                      className="block w-full  rounded-lg border-none"
                       placeholder={VENDOR_FORM_LABELS.TYPE_HERE}
                       rows={3}
                       {...register(`vendors.${index}.${f.name}` as const)}
