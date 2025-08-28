@@ -1,11 +1,10 @@
 "use client";
 
-import { useLoadScript } from "@react-google-maps/api";
 import { GoogleMapMultipleMarkers } from "@/common/components/molecules/GoogleMapMultipleMarkers";
 import { ShimmerMapOnly } from "@/common/components/molecules/Shimmer/ShimmerMapOnly";
-import { VendorInterface } from "@/main/property/interfaces";
-import { VENDOR_TAB_LABELS } from "@/main/vendor/constants";
 import { Icon } from "@/lib/next-image/Icon";
+import { VendorInterface } from "@/main/property/interfaces";
+import { useLoadScript } from "@react-google-maps/api";
 import Link from "next/link";
 import { useState } from "react";
 import { IoCaretDownOutline, IoCaretUpOutline } from "react-icons/io5";
