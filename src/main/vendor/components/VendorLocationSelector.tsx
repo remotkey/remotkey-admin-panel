@@ -66,10 +66,21 @@ export const VendorLocationSelector = ({
   };
 
   const handleCitiesChange = (newCityNames: string[]) => {
-    const newCities = newCityNames.map((cityName) => ({
-      name: cityName,
-      vendorLocation: { lat: 0, lng: 0 },
-    }));
+    // Preserve existing cities with their locations
+    const existingCities = cities || [];
+    const newCities = newCityNames.map((cityName) => {
+      // Check if city already exists and preserve its location
+      const existingCity = existingCities.find(
+        (city: any) => city.name === cityName
+      );
+      if (existingCity) {
+        return existingCity;
+      }
+      return {
+        name: cityName,
+        vendorLocation: { lat: 0, lng: 0 },
+      };
+    });
 
     setValue(name, newCities, { shouldValidate: true });
   };
