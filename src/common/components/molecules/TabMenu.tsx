@@ -112,20 +112,18 @@ export const TabMenu = ({ data, vendors }: TabMenuProps) => {
           ))}
         </TabList>
 
-        {filteredTabs.map((tab, index) => (
+        {filteredTabs?.map((tab, index) => (
           <TabPanel key={index} className="mt-2">
-            {mapLoaded && (
-              <>
-                {tab.type === "vendors" ? (
-                  <VendorMap vendors={tab.data as VendorInterface[]} />
-                ) : (
-                  <>
-                    <GoogleMapMultipleMarkers markers={tab.data as LatLng[]} />
-                    <MapList data={tab.data as LatLng[]} icon={tab.icon} />
-                  </>
-                )}
-              </>
-            )}
+            <>
+              {tab?.type === "vendors" ? (
+                <VendorMap vendors={tab.data as VendorInterface[]} />
+              ) : (
+                <>
+                  <GoogleMapMultipleMarkers markers={tab.data as LatLng[]} />
+                  <MapList data={tab.data as LatLng[]} icon={tab.icon} />
+                </>
+              )}
+            </>
           </TabPanel>
         ))}
       </TabGroup>

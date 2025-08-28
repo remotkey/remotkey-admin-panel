@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
     const cityParam = searchParams.get("city") || "";
     const _id = searchParams.get("_id");
     const propertyId = searchParams.get("propertyId");
-
+    console.log("ssss", _id);
     if (_id) {
       const data = await VendorModel.findById(_id);
       return NextResponse.json({

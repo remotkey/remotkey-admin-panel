@@ -27,34 +27,38 @@ export const VendorMap = ({ vendors }: VendorMapProps) => {
   }
 
   // Extract vendor locations from all cities
-  const vendorLocations = vendors.flatMap(
+  const vendorLocations = vendors?.flatMap(
     (vendor) =>
       vendor.cities
-        ?.filter((city) => city.vendorLocation && city.vendorLocation.lat !== 0)
+        ?.filter(
+          (city) => city?.vendorLocation && city?.vendorLocation?.lat !== 0
+        )
         ?.map((city) => ({
-          lat: city.vendorLocation.lat,
-          lng: city.vendorLocation.lng,
-          place: vendor.name,
-          name: vendor.name,
-          city: city.name,
-          description: vendor.description,
-          contactNumber: vendor.contactNumber,
-          email: vendor.email,
-          website: vendor.website,
+          lat: city?.vendorLocation.lat,
+          lng: city?.vendorLocation.lng,
+          place: vendor?.name,
+          name: vendor?.name,
+          city: city?.name,
+          description: vendor?.description,
+          contactNumber: vendor?.contactNumber,
+          email: vendor?.email,
+          website: vendor?.website,
         })) || []
   );
 
-  if (!vendorLocations || vendorLocations.length === 0) {
-    return (
-      <div className="rounded-lg bg-C_F7F7F7 p-6 text-center text-C_6E6E6E">
-        {VENDOR_TAB_LABELS.NO_VENDORS}
-      </div>
-    );
-  }
+  // if (!vendorLocations || vendorLocations.length === 0) {
+  //   return (
+  //     <div className="rounded-lg bg-C_F7F7F7 p-6 text-center text-C_6E6E6E">
+  //       {VENDOR_TAB_LABELS.NO_VENDORS}
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="space-y-4">
-      <GoogleMapMultipleMarkers markers={vendorLocations} />
+      {!!vendorLocations?.length && (
+        <GoogleMapMultipleMarkers markers={vendorLocations} />
+      )}
       <VendorList vendors={vendors} />
     </div>
   );

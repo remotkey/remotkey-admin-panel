@@ -47,7 +47,7 @@ export default async function PropertyPage({
       <div className="flex flex-col gap-[1.875rem]">
         <ContactInterestPrompt />
         {data?.thankYouText && (
-          <div className="font_reg_8 whitespace-pre-line rounded-r_125 bg-C_F7F7F7 p-6 text-C_0E0E0E">
+          <div className="font_reg_8 whitespace-pre-wrap break-words rounded-r_125 bg-C_F7F7F7 p-6 text-C_0E0E0E">
             {data.thankYouText.split(/(https?:\/\/[^\s]+)/g).map((part, idx) =>
               /https?:\/\/[^\s]+/.test(part) ? (
                 <Link
@@ -95,13 +95,11 @@ export default async function PropertyPage({
           </div>
         )}
         <TabMenu data={data} vendors={vendorsData} />
-        {vendorsData.length === 0 &&
-          data?.vendors &&
-          data.vendors.length > 0 && (
-            <div className="rounded-lg bg-gray-50 p-6 text-center text-gray-600">
-              No vendor information available at the moment.
-            </div>
-          )}
+        {!vendorsData?.length && !!data?.vendors && (
+          <div className="rounded-lg bg-gray-50 p-6 text-center text-gray-600">
+            No vendor information available at the moment.
+          </div>
+        )}
         <div className="flex flex-col gap-[0.9375rem]">
           <SectionSubHeading title="Hospital / Urgent care near me" />
           <HospitalMap hospitals={data?.hospitals || []} />
